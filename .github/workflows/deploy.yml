@@ -7,12 +7,7 @@ on:
     branches: [ main ]
   # このワークフローを GitHub の Actions タブから手動で実行できるようにします。
   workflow_dispatch:
-
-# このジョブがリポジトリをクローンし、ページデプロイメントを作成することを許可します。
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    types: [update_post]
 
 jobs:
   build:
@@ -22,6 +17,13 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v1
+        with:
+          node-version: 20
+        env:
+          MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
+          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+          MICROCMS_SERVICE_DOMAIN2: ${{ secrets.MICROCMS_SERVICE_DOMAIN2 }}
+          MICROCMS_API_KEY2: ${{ secrets.MICROCMS_API_KEY2 }}
         # with:
           # path: . # リポジトリ内のAstroプロジェクトのルートロケーション。(オプション)
           # node-version: 18 # サイト構築に使用するNodeのバージョン。デフォルトは18です。（オプション）
@@ -30,6 +32,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # このジョブがリポジトリをクローンし、ページデプロイメントを作成することを許可します。
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
