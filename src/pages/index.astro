@@ -6,14 +6,14 @@ const title = "早稲田大学アンサンブル・リドール";
 const description =
   "早稲田大学公認音楽サークル「アンサンブル リドール」オフィシャルウェブサイト。ポップスからジャズ、ラテンやオーケストラまで幅広いジャンルで活動。";
 const og_image = { logo };
-import biglogo from "./images/biglogo.png";
-import biglogo3 from "./images/biglogo3.png";
+// import biglogo from "./images/biglogo.png";
+// import biglogo3 from "./images/biglogo3.png";
 import biglogo4 from "./images/biglogo4.png";
 import Carousel from "@/components/Carousel.astro";
 import NewsData from "@/components/NewsData.astro";
 import EventData from "@/components/EventData.astro";
 import detail from "./images/detail.png";
-import Blog from "@/components/blog.astro";
+// import Blog from "@/components/blog.astro";
 import Bloglink from "@/components/blog_link.astro";
 
 //microCMS呼び出し
@@ -22,11 +22,11 @@ const response = await getBlogs({
   fields: ["id", "title", "image", "content", "date"],
 });
 const { blogId } = Astro.params;
-const blog = await getBlogDetail(blogId as string);
+// const blog = await getBlogDetail(blogId as string);
 import { getNews, getNewsDetail } from "../lib/microcms";
-const response2 = await getNews({
-  fields: ["id", "title", "description", "date", "text"],
-});
+// const response2 = await getNews({
+//   fields: ["id", "title", "description", "date", "text"],
+// });
 const { newsId } = Astro.params;
 const news = await getNewsDetail(newsId as string);
 ---
