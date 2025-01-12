@@ -4,8 +4,12 @@ import vue from "@astrojs/vue";
 import react from "@astrojs/react"; 
 
 export default defineConfig({
+
+
+
   site: 'https://rizdor.github.io',
   base: '/official',
+
   vite: {
     resolve: {
       alias: {
