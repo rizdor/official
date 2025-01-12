@@ -6,8 +6,8 @@ on:
   push:
     branches: [main]
   # このワークフローを GitHub の Actions タブから手動で実行できるようにします。
-  workflow_dispatch:
-    types: [update_post]
+  # workflow_dispatch:
+  #   types: [update_post]
   repository_dispatch:
     types: [microcms]
 
