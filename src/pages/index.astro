@@ -1,161 +1,177 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Image } from 'astro:assets';
-import logo from './images/logo.png';
+import { Image } from "astro:assets";
+import logo from "./images/logo.png";
 const title = "早稲田大学アンサンブル・リドール";
-const description = "早稲田大学公認音楽サークル「アンサンブル リドール」オフィシャルウェブサイト。ポップスからジャズ、ラテンやオーケストラまで幅広いジャンルで活動。";
-const og_image = { logo }; 
-import biglogo from './images/biglogo.png';
-import Carousel from '@/components/Carousel.astro'
-import NewsData from "@/components/NewsData.astro"
+const description =
+  "早稲田大学公認音楽サークル「アンサンブル リドール」オフィシャルウェブサイト。ポップスからジャズ、ラテンやオーケストラまで幅広いジャンルで活動。";
+const og_image = { logo };
+import biglogo from "./images/biglogo.png";
+import biglogo3 from "./images/biglogo3.png";
+import biglogo4 from "./images/biglogo4.png";
+import Carousel from "@/components/Carousel.astro";
+import NewsData from "@/components/NewsData.astro";
 import EventData from "@/components/EventData.astro";
 import detail from "./images/detail.png";
 import Blog from "@/components/blog.astro";
 import Bloglink from "@/components/blog_link.astro";
+
+//microCMS呼び出し
+import { getBlogs, getBlogDetail } from "../lib/microcms";
+const response = await getBlogs({
+  fields: ["id", "title", "image", "content", "date"],
+});
+const { blogId } = Astro.params;
+const blog = await getBlogDetail(blogId as string);
+import { getNews, getNewsDetail } from "../lib/microcms";
+const response2 = await getNews({
+  fields: ["id", "title", "description", "date", "text"],
+});
+const { newsId } = Astro.params;
+const news = await getNewsDetail(newsId as string);
 ---
 
 <Layout title={title} , description={description} og_image={og_image}>
-	<main>
-		<section id="top" class="p-top">
-			<div class="p-top__logos">
-			<div class="p-top__logos_line">
-			<h1>早稲田公認音楽サークル</h1>
-			</div>
-			<span class="p-top__logos_overline1"></span>
-			<span class="p-top__logos_overline2"></span>
-			<span class="p-top__logos_underline1"></span>
-			<span class="p-top__logos_underline2"></span>
-			<div class="p-top__img-container">
-			<Image src={ biglogo } alt="大きなロゴ" class="p-top__img"/>
-			</div>
-			<h2>アンサンブル・リドール</h2>
-			</div>
-			<div class="p-top__JS"> 
-				<Carousel />		  
-			</div>
-		</section>
-		<section id="middle" class="p-middle">
-			<div class="p-middle__l-container">
-			<div class="p-middle__background_img">
-			<div class="p-middle__News">
-			<div class="p-middle__News_letter">
-				<p class="p-middle__News_letter_n">N</p>
-				<p class="p-middle__News_letter_e">e</p>
-				<p class="p-middle__News_letter_w">w</p>
-				<p class="p-middle__News_letter_s">s</p>
-				</div>
-				<div class="p-middle__News_box">
-				<div class="p-middle__News_box-left">
-				<NewsData />
-				<NewsData />
-				<NewsData />
-				</div>
-				<div class="p-middle__News_box-right">
-				<NewsData />
-				<NewsData />
-				<NewsData />
-				</div>
-				<div class="p-middle__News_box_add">
-				<NewsData />
-				</div>
-				</div>
-			</div>
-			<div class="p-middle__Schedule">
-					<div class="p-middle__Schedule_letter">
-						<p class="p-middle__Schedule_letter_s">S</p>
-						<p class="p-middle__Schedule_letter_c">c</p>
-						<p class="p-middle__Schedule_letter_h">h</p>
-						<p class="p-middle__Schedule_letter_e1">e</p>
-						<p class="p-middle__Schedule_letter_d">d</p>
-						<p class="p-middle__Schedule_letter_u">u</p>
-						<p class="p-middle__Schedule_letter_l">l</p>
-						<p class="p-middle__Schedule_letter_e2">e</p>
-						</div>
-						<div class="p-middle__Schedule_eventdata">
-							<div class="p-middle__Schedule_eventdata1">
+  <main>
+    <section id="top" class="p-top">
+      <div class="p-top__logos">
+        <div class="p-top__logos_line">
+          <h1>早稲田公認音楽サークル</h1>
+        </div>
+        <span class="p-top__logos_overline1"></span>
+        <span class="p-top__logos_overline2"></span>
+        <span class="p-top__logos_underline1"></span>
+        <span class="p-top__logos_underline2"></span>
+        <div class="p-top__img-container">
+          <Image src={biglogo4} alt="大きなロゴ" class="p-top__img" />
+          <!-- <img src="./images/biglogo.png"class="p-top__img"> -->
+        </div>
+        <h2>アンサンブル・リドール</h2>
+      </div>
+      <div class="p-top__JS">
+        <Carousel />
+      </div>
+    </section>
+    <section id="middle" class="p-middle">
+      <div class="p-middle__l-container">
+        <div class="p-middle__background_img">
+          <div class="p-middle__News">
+            <div class="p-middle__News_letter">
+              <p class="p-middle__News_letter_n">N</p>
+              <p class="p-middle__News_letter_e">e</p>
+              <p class="p-middle__News_letter_w">w</p>
+              <p class="p-middle__News_letter_s">s</p>
+            </div>
+            <div class="p-middle__News_box">
+              <NewsData />
+            </div>
+          </div>
+        </div>
+        <div class="p-middle__Schedule">
+          <div class="p-middle__Schedule_letter">
+            <p class="p-middle__Schedule_letter_s">S</p>
+            <p class="p-middle__Schedule_letter_c">c</p>
+            <p class="p-middle__Schedule_letter_h">h</p>
+            <p class="p-middle__Schedule_letter_e1">e</p>
+            <p class="p-middle__Schedule_letter_d">d</p>
+            <p class="p-middle__Schedule_letter_u">u</p>
+            <p class="p-middle__Schedule_letter_l">l</p>
+            <p class="p-middle__Schedule_letter_e2">e</p>
+          </div>
+          <div class="p-middle__Schedule_eventdata">
+            <div class="p-middle__Schedule_eventdata1">
+              <EventData />
+            </div>
+
+            <!-- <div class="p-middle__Schedule_eventdata3">
 								<EventData />
-							</div>
-							<div class="p-middle__Schedule_eventdata2">
-								<EventData />
-							</div>
-							<div class="p-middle__Schedule_eventdata3">
-								<EventData />
-							</div>
-						</div>
-			</div>
-			
-				<div class="p-middle__About">
-				<div class="p-middle__About-overlay">
-				</div>
-				<div class="p-middle__About_letter">
-					<p class="p-middle__About_letter_a">A</p>
-					<p class="p-middle__About_letter_b">b</p>
-					<p class="p-middle__About_letter_o">o</p>
-					<p class="p-middle__About_letter_u">u</p>
-					<p class="p-middle__About_letter_t">t</p>
-				</div>
-				<div class="p-middle__About_points">
-					<div class="p-middle__About_lump">
-					<div class="p-middle__About_header">
-						<p class="p-middle__About_number">01</p>
-						<p class="p-middle__About_title">非レギュラー制</p>
-					</div>
-					<p class="p-middle__About_title_responsive">非レギュラー制</p>
-				</div>
-					<p class="p-middle__About_explanation">つまりメンバー全員が演奏会に参加するという形をとっています。そのため、楽器を始めたての初心者でも、
-						経験者と同様にコンサートの舞台で演奏することができます。</p>
-				</div>
-				<div class="p-middle__About_points">
-					<div class="p-middle__About_lump">
-					<div class="p-middle__About_header">
-						<p class="p-middle__About_number">02</p>
-						<p class="p-middle__About_title">初心者大歓迎</p>
-					</div>
-					<p class="p-middle__About_title_responsive">初心者大歓迎</p>
-				</div>
-					<p class="p-middle__About_explanation">リドールでは、初心者も多数受け付けており、現在メンバーの約3割が初心者です。中には大学までほとんど音楽をしたことのなかったメンバーや、
-						大学に入ってから別の楽器を始めてみたというメンバーもいます。リドールではこうした初心者も上級生がサポートしていきます。</p>
-				</div>
-				<div class="p-middle__About_points">
-					<div class="p-middle__About_lump">
-					<div class="p-middle__About_header">
-						<p class="p-middle__About_number">03</p>
-						<p class="p-middle__About_title">インカレ生多数</p>
-					</div>
-					<p class="p-middle__About_title_responsive">インカレ生多数</p>
-				</div>
-					<p class="p-middle__About_explanation">インカレサークルのため、他大学の学生さんも大歓迎です。現在、日本女子大、立教大、東京女子大、昭和女子大、ICU、上智大、東京女子医大、
-						東京医科歯科大、武蔵野大、津田塾大、清泉女子大の学生さんも参加しています。</p>
-				</div>
-			<div class="p-middle__About_detail">
-				<div class="p-middle__About_image_wrapper">
-				<Image src={ detail } alt="サークルの説明の画像" class="p-middle__About_image"/>
-			</div>
-				<div class="p-middle__About_details">
-				<div class="p-middle__About_details1">
-					<p class="p-middle__About_details1_title">サークル名</p>
-					<p>アンサンブル・リドール</p>
-				</div>
-					<div class="p-middle__About_details1">
-					<p class="p-middle__About_details1_title">活動場所</p>
-					<p>学生会館(30号館)地下1階音楽練習室</p>
-				</div>
-					<div class="p-middle__About_details1">
-					<p class="p-middle__About_details1_title">活動日</p>
-					<p>毎週月/木/土, 18:15~21:30</p>
-				</div>
-					<div class="p-middle__About_details1">
-					<p class="p-middle__About_details1_title">入会費</p>
-					<p>入会費なし</p>
-				</div>
-					<div class="p-middle__About_details1">
-					<p class="p-middle__About_details1_title">会費</p>
-					<p class="p-middle__About_details_fee">会費は月2000円。合宿費、コンサート前などその場に応じた出費</p>
-				</div>
-				</div>
-				</div>
-			</div>
-				
+							</div> -->
+          </div>
+        </div>
+
+        <div class="p-middle__About">
+          <div class="p-middle__About-overlay"></div>
+          <div class="p-middle__About_letter">
+            <p class="p-middle__About_letter_a">A</p>
+            <p class="p-middle__About_letter_b">b</p>
+            <p class="p-middle__About_letter_o">o</p>
+            <p class="p-middle__About_letter_u">u</p>
+            <p class="p-middle__About_letter_t">t</p>
+          </div>
+          <div class="p-middle__About_points">
+            <div class="p-middle__About_lump">
+              <div class="p-middle__About_header">
+                <p class="p-middle__About_number">01</p>
+                <p class="p-middle__About_title">非レギュラー制</p>
+              </div>
+              <p class="p-middle__About_title_responsive">非レギュラー制</p>
+            </div>
+            <p class="p-middle__About_explanation">
+              つまりメンバー全員が演奏会に参加するという形をとっています。そのため、楽器を始めたての初心者でも、
+              経験者と同様にコンサートの舞台で演奏することができます。
+            </p>
+          </div>
+          <div class="p-middle__About_points">
+            <div class="p-middle__About_lump">
+              <div class="p-middle__About_header">
+                <p class="p-middle__About_number">02</p>
+                <p class="p-middle__About_title">初心者大歓迎</p>
+              </div>
+              <p class="p-middle__About_title_responsive">初心者大歓迎</p>
+            </div>
+            <p class="p-middle__About_explanation">
+              リドールでは、初心者も多数受け付けており、現在メンバーの約3割が初心者です。中には大学までほとんど音楽をしたことのなかったメンバーや、
+              大学に入ってから別の楽器を始めてみたというメンバーもいます。リドールではこうした初心者も上級生がサポートしていきます。
+            </p>
+          </div>
+          <div class="p-middle__About_points">
+            <div class="p-middle__About_lump">
+              <div class="p-middle__About_header">
+                <p class="p-middle__About_number">03</p>
+                <p class="p-middle__About_title">インカレ生多数</p>
+              </div>
+              <p class="p-middle__About_title_responsive">インカレ生多数</p>
+            </div>
+            <p class="p-middle__About_explanation">
+              インカレサークルのため、他大学の学生さんも大歓迎です。現在、日本女子大、立教大、東京女子大、昭和女子大、ICU、上智大、東京女子医大、
+              東京医科歯科大、武蔵野大、津田塾大、清泉女子大の学生さんも参加しています。
+            </p>
+          </div>
+          <div class="p-middle__About_detail">
+            <div class="p-middle__About_image_wrapper">
+              <Image
+                src={detail}
+                alt="サークルの説明の画像"
+                class="p-middle__About_image"
+              />
+            </div>
+            <div class="p-middle__About_details">
+              <div class="p-middle__About_details1">
+                <p class="p-middle__About_details1_title">サークル名</p>
+                <p>アンサンブル・リドール</p>
+              </div>
+              <div class="p-middle__About_details1">
+                <p class="p-middle__About_details1_title">活動場所</p>
+                <p>学生会館(30号館)地下1階音楽練習室</p>
+              </div>
+              <div class="p-middle__About_details1">
+                <p class="p-middle__About_details1_title">活動日</p>
+                <p>毎週月/木/土, 18:15~21:30</p>
+              </div>
+              <div class="p-middle__About_details1">
+                <p class="p-middle__About_details1_title">入会費</p>
+                <p>入会費なし</p>
+              </div>
+              <div class="p-middle__About_details1">
+                <p class="p-middle__About_details1_title">会費</p>
+                <p class="p-middle__About_details_fee">
+                  会費は月2000円。合宿費、コンサート前などその場に応じた出費
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
 		<div class="p-middle__Blog">
 			<div class="p-middle__Blog_letter">
 				<p class="p-middle__Blog_letter_b">B</p>
@@ -174,12 +190,31 @@ import Bloglink from "@/components/blog_link.astro";
 						ブログを通じて、より多くの方と音楽を共有できることを楽しみにしています！
 					</p>
 					<div class="p-middle__Blog_the-most-least-one_responsive">
-						<Blog width="60vw" />
+						<!-- <Blog width="60vw" /> -->
 					</div>
 					<Bloglink />
 					</div>
 					<div class="p-middle__Blog_the-most-least-one">
-						<Blog width="30vw"/>
+						<!-- <Blog width="30vw"/> -->
+						<ul
+						style="display: flex; flex-wrap: wrap;justify-content: space-between;"
+					  >
+						{
+						  response.contents.slice(0, 1).map((blog: any) => (
+							<div class="blog" style="width: 350px; height:430px margin-top:-30px">
+							  <a href={blog.id} />
+		
+							  <img
+								src={blog.image.url}
+								alt=""
+								style="width: 400px; height: 320px; object-fit: cover;"
+							  />
+							  <p class="blog__title">{blog.title}</p>
+							  <p class="blog__date">{blog.date}</p>
+							</div>
+						  ))
+						}
+					  </ul>
 					</div>
 				</div>
 		</div>
