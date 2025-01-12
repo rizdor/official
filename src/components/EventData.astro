@@ -2,32 +2,43 @@
 import "@/scss/styles.scss";
 import { Image } from 'astro:assets';
 import picture from './images/exsample.png';
----
-    <div class="EventData">
-    <p class="EventData__title-responsive">イベント名</p>
-    <div class="EventData__left-circle"></div>
-    <div class="EventData__right-circle"></div>
-    <Image src={ picture } alt="イベントの写真" class="EventData__picture"/>
-    <div class="EventData__data">
-    <p class="EventData__title">イベント名</p>
-    <div class="EventData__date">
-        <img src="" alt="">
-        <p class="EventData__year">2024</p>
-        <p class="EventData__date2">01/01</p>
-        <div class="EventData__lump">
-        <p class="EventData__day-of-the-week">SUN</p>
-        <p class="EventData__time">12:00</p>
-        </div>
-    </div>
-<div class="description">
-    <p>イベントの簡単な紹介や一言今年も心温まる冬のリサイタルを開催いたします。
-        冬の澄んだ空気にぴったりの、美しい音楽の調べをお楽しみください。本公演では、
-        クラシックの名曲から季節感溢れる特別な楽曲まで、
-        幅広いレパートリーをご用意しました。
-    </p>
-</div>
-</div>
-</div>
 
+import { getSchedule ,getScheduleDetail} from "../lib/microcms";
+const response = await getSchedule({ fields: ["id", "title","image","text","year","day","name","time"] });
+const { scheduleId } = Astro.params;
+const schedule = await getScheduleDetail(scheduleId as string);
+console.log(response.contents);
+---
+<ul>
+    {
+        response.contents.map((schedule: any) => (
+            <div class="EventData">
+                <p class="EventData__title-responsive">{schedule.name}</p>
+                <div class="EventData__left-circle"></div>
+                <div class="EventData__right-circle"></div>
+
+                <img src={schedule.image.url } alt="イベントの写真" class="EventData__picture"style="width: 180px; height: 250px; object-fit: cover;"/>
+                <div>
+                <div class="EventData__data">
+                    <p class="EventData__title">{schedule.name}</p>
+                    <div class="EventData__date">
+                        <img src="" alt="">
+                        <p class="EventData__year">{schedule.year}</p>
+                        <p class="EventData__date2">{schedule.day}</p>
+                        <div class="EventData__lump">
+                            <p class="EventData__day-of-the-week">{schedule.week}</p>
+                            <p class="EventData__time">{schedule.time}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="description"style="margin-left: 10%;">
+                    <p>{schedule.text}</p> 
+                </div>
+                </div>
+            </div>
+        ))
+    }
+</ul>
 
 

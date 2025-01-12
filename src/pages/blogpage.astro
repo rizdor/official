@@ -3,6 +3,12 @@ import Layout from "@/layouts/Layout.astro";
 import Blog from '@/components/blog.astro';
 import ShowMore from '@/components/ShowMore.astro';
 const title = "早稲田大学アンサンブル・リドール Blogページ";
+
+
+import { getBlogs ,getBlogDetail} from "../lib/microcms";
+const response = await getBlogs({ fields: ["id", "title"] });
+const { blogId } = Astro.params;
+const blog = await getBlogDetail(blogId as string);
 ---
 
 <Layout title={title}>
@@ -15,26 +21,16 @@ const title = "早稲田大学アンサンブル・リドール Blogページ";
                 <p class="blogpage__Blog_letter_g">g</p>
             </div>
             <p>
-                私のライブや音楽活動の様子をブログで発信しています！コンサートやリサイタルの情報、リハーサルの裏側、パフォーマンスの感想など、日々の活動を詳しくお届けしています。
+                ライブや音楽活動の様子をブログを通じて皆さんに発信しています！コンサートやリサイタルの情報はもちろん、開催までの準備やリハーサルの裏側、どんな思いでステージに臨んでいるのかといった私自身の気持ちまで、日々の活動をできるだけ詳しくお届けしています。
+
+演奏会に関する告知では、会場やプログラムの内容だけでなく、その日に演奏する楽曲に込めた想いやエピソードもご紹介しています。さらに、リハーサルの風景では、どのように曲を仕上げているのか、試行錯誤の過程や共演者とのコミュニケーションの様子をお伝えし、音楽が形になるまでのストーリーを共有しています。
+<br><br>このブログを通じて、音楽活動を身近に感じていただけたら嬉しいです。音楽が好きな方はもちろん、活動を応援してくださる方々と一緒に、音楽の素晴らしさを分かち合いながら新たな発見をしていければと思っています。ぜひ、チェックしてみてくださいね！
             </p>  
             <div class="blogpage__view">
-                <div class="blogpage__left_side">
-                    <Blog width = '35vw', height = 'auto', marginbottom="9vw"/>
-                    <Blog width = '35vw', height = 'auto', marginbottom="9vw"/>
-                    <Blog width = '35vw', height = 'auto'/>
-                </div>  
-                <div class="blogpage__right_side">
-                    <Blog width = '35vw', height = 'auto', marginbottom="9vw"/>
-                    <Blog width = '35vw', height = 'auto', marginbottom="9vw"/>
-                    <Blog width = '35vw', height = 'auto'/>
-                </div>    
+                    <Blog width = '25vw', height = 'auto', marginbottom="9vw"/>
             </div>
-            <div class="blogpage__responsive">
-                    <Blog width = '70vw', height = 'auto', marginbottom="15vw"/>
-                    <Blog width = '70vw', height = 'auto', marginbottom="15vw"/>
-                    <Blog width = '70vw', height = 'auto'/>
-                </div>  
-            <ShowMore />
+
+            <!-- <ShowMore /> -->
         </div>
     </main>
 </Layout>

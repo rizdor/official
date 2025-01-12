@@ -34,15 +34,16 @@ header {
     .header__sns {
       display: flex;
       .header__x {
-        width: 7vw;
-        max-width: 55px;
-        margin-top: 5px;
+        width: 5vw;
+        max-width: 45px;
+        // margin-top: 2px;
         margin-right: 3vw;
       }
       .header__instagram {
-        margin-right: 7vw;
-        width: 8vw;
-        max-width: 55px;
+        margin-right: 5vw;
+        width: 5vw;
+        max-width: 45px;
+        // margin-top: 1px;
       }
     }
   }
@@ -150,7 +151,7 @@ header {
         left: 0;
         width: 40vw;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.4); /* 半透明に修正 */
+        // background-color: rgba(0, 0, 0, 0.4); /* 半透明に修正 */
         visibility: hidden;
         opacity: 0;
         z-index: 1000;
@@ -161,13 +162,14 @@ header {
         visibility: visible;
         opacity: 1;
       }
-
+// ハンバーガー押した後
       .header__nav-area {
+        border-radius: 20px;
         position: fixed;
-        top: 0;
+        top: 10px;
         right: 0;
         z-index: 9;
-        height: 100vh;
+        height: 90vw;
         width: 60vw;
         visibility: hidden;
         padding-top: 60px;
@@ -180,12 +182,11 @@ header {
       }
 
       .header__navigation {
-        padding: 40px 25px 120px;
-
+        padding: 0px 25px 120px;
         &-list {
           display: flex;
           justify-content: center;
-          align-items: center;
+          // align-items: center;
           flex-direction: column;
 
           & li {
@@ -333,17 +334,19 @@ main {
       }
       .p-top__img-container {
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         img {
-          width: 100%;
+
+          margin: 40px 0px -10px 40px;
+          width: 87%;
         }
       }
 
       h2 {
         font-size: 2.5vw;
         position: absolute;
-        top: 82%;
-        left: 65%;
+        top: 87%;
+        left: 68%;
         font-weight: 400;
         color: #73450d;
       }
@@ -411,7 +414,7 @@ main {
           display: flex;
           justify-content: center;
           img {
-            width: 100%;
+            width: 90%;
             padding-top: 5vw;
             padding-bottom: 5vw;
           }
@@ -464,7 +467,8 @@ main {
       }
 
       .p-middle__News_box {
-        display: flex;
+        // display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         .p-middle__News_box-left {
           width: 40vw;
@@ -479,6 +483,7 @@ main {
       }
 
       @media (max-width: 550px) {
+
         .p-middle__News {
           padding-top: 60px;
         }
@@ -503,6 +508,7 @@ main {
             transform: translate(13px, -3px) rotate(29.33deg);
           }
         }
+        
         .p-middle__News_box {
           display: block;
           .p-middle__News_box-left {
@@ -592,6 +598,7 @@ main {
           }
         }
       }
+      
 
       .p-middle__About {
         margin-top: 258px;
@@ -747,6 +754,7 @@ main {
           }
 
           .p-middle__About_details {
+            margin-top: 20px;
             align-items: center;
             width: 40vw;
             height: auto;
@@ -919,15 +927,17 @@ main {
           }
         }
         .p-middle__Blog_about {
+          // margin: 0 auto;
           display: flex;
           justify-content: space-between;
-          padding-top: 100px;
+          padding-top: 50px;
           .p-middle__Blog_pa {
-            width: 52vw;
+            margin: 70px auto 0 auto;
+            width: 45vw;
             display: flex;
             flex-direction: column;
             .p-middle__Blog_p {
-              padding: 0 0 10% 0;
+              padding: 0 0 30px 0;
             }
             .p-middle__Blog_the-most-least-one_responsive {
               display: none;
@@ -1041,13 +1051,13 @@ main {
       }
     }
     .blogpage__view {
-      padding-top: 14vw;
-      display: flex;
+      padding-top: 10vw;
+      // display: flex;
+      // justify-content: space-between;
       padding-bottom: 78px;
 
-      .blogpage__left_side {
-        margin-right: 10vw;
-      }
+
+
     }
     .blogpage__responsive {
       display: none;
@@ -1585,6 +1595,36 @@ main {
 
 // ----- blog_linkここから -----
 
+// .Blog_link__lump {
+//   position: relative;
+//   // margin-left: 10%;
+//   margin-top: 50px;
+//   text-align: center;
+
+// }
+
+// .Blog_link__lump::after {
+//   margin: 0 auto;
+//   content: "";
+//   position: absolute;
+//   bottom: -3px;
+//   // left: 25px;
+//   right: 41%;
+//   width: 200px;
+//   height: 2px;
+//   background-color: #f2911b;
+// }
+
+// .Blog_link__lump::before {
+//   content: "";
+//   position: absolute;
+//   top: 5px;
+//   // bottom: 45px;
+//   left: 41%;
+//   width: 200px;
+//   height: 2px;
+//   background-color: #f2911b;
+// }
 .Blog_link__lump {
   position: relative;
   margin-left: 20%;
@@ -1614,8 +1654,31 @@ main {
 .Blog__link {
   font-size: 32px;
   position: relative;
+  // text-align: center;
+  // margin: 0 auto;
 }
 
+// .Blog__link::after {
+//   content: "";
+//   display: block;
+//   width: 2px;
+//   height: 45px;
+//   position: absolute;
+//   top: 14px;
+//   right: -5px;
+//   background-color: #f2911b;
+// }
+
+// .Blog__link::before {
+//   content: "";
+//   display: inline-block;
+//   width: 2px;
+//   height: 45px;
+//   position: absolute;
+//   top: -5px;
+//   left: -8px;
+//   background-color: #f2911b;
+// }
 .Blog__link::after {
   content: "";
   display: block;
@@ -1698,10 +1761,13 @@ main {
 // ----- blogここから -----
 
 .blog {
+  margin-top: 30px;
   display: inline-block;
   position: relative;
-  padding: 10% 10% 0 10%;
+  padding: 0% 0% 0 0%;
   border: 3px solid #73450d;
+  background-color: white;
+  border-radius: 1%;
 
   img {
     max-width: 100%;
@@ -1713,12 +1779,15 @@ main {
     left: 0;
     height:100%;
     width: 100%;
+
+    // background-color: white;
   }
   .blog__title {
-    padding: 15px 0 5px 0;
+    padding: 15px 0 0px 2%;
+    font-size: 25px;
   }
   .blog__date {
-    padding: 10px 0 25px 0;
+    padding: 5px 0 25px 3%;
   }
 }
 // ----- blogここまで -----
@@ -1921,7 +1990,7 @@ main {
 }
 .EventData__data {
   max-width: 63%;
-  padding: 50px 0 50px 10%;
+  padding: 20px 0 10px 10%;
 }
 .EventData__date {
   display: flex;

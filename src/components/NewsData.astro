@@ -1,13 +1,34 @@
 ---
 // CMSを組み込むときに書き換えてください
 // アンカーリンク
+
+
+import { getNews ,getNewsDetail} from "../lib/microcms";
+const response2 = await getNews({
+  fields: ["id", "title", "description", "date", "text"],
+ })
+ const { newsId } = Astro.params;
+ const news = await getNewsDetail(newsId as string);
 ---
- <div class="NewsData__box">
+ <!-- <div class="NewsData__box">
     <div class="NewsData__News-box">
    <a href="put the link for the newsdata"></a>
    <p class="NewsData__date">yyyy/mm/dd</p>
    <p class="NewsData__title">test title</p> 
    </div>
-   </div>
+</div> -->
+<!-- <ul style="display: flex;flex-wrap: wrap;justify-content: space-between;"> -->
     
-
+      <ul>
+      {
+        response2.contents.map((news: any) => (
+        <div class="NewsData__box">
+         <div class="NewsData__News-box">
+            <a href="put the link for the newsdata"></a>
+            <p class="NewsData__date"style="width: 40vw;">{news.date}</p>
+            <p class="NewsData__title"style="width: 40vw;">{news.text}</p> 
+         </div>
+      </div>
+        ))
+      }      
+</ul>

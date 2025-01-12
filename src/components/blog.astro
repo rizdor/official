@@ -3,13 +3,27 @@ import "@/scss/styles.scss";
 import { Image } from 'astro:assets';
 import image from './images/image.png';
 
-const { width = '500px', height = 'auto', marginbottom = '0px' } = Astro.props;
+const { width = '300px', height = 'auto', marginbottom = '0px' } = Astro.props;
+
+import { getBlogs ,getBlogDetail} from "../lib/microcms";
+const response = await getBlogs({ fields: ["id", "title","image","content","date"] });
+const { blogId } = Astro.params;
+const blog = await getBlogDetail(blogId as string);
 ---
 
-<div class="blog" style={`width: ${width}; height: ${height}; margin-bottom: ${marginbottom};`}>
-    <Image src={image} alt="CMSから読み込んだ画像" /> 
-    <a href="link for a blog"></a>
-    <p class="blog__title">簡単なタイトル「・・・・」</p>
-    <p class="blog__date">yyyy.mm.dd</p>
-</div>
+
+    <ul style="display: flex; flex-wrap: wrap;justify-content: space-between;">
+        {
+          response.contents.map((blog: any) => (
+                <div class="blog" style={`width: 350px; height: 430px; margin-bottom: ${marginbottom}; `}>
+                    <a href={blog.id}></a>
+
+                    <img src={blog.image.url } alt="" style="width: 400px; height: 320px; object-fit: cover;"/>
+                    <p class="blog__title">{blog.title}</p>
+                    <p class="blog__date">{blog.date}</p>
+                </div>
+          ))
+        }
+    </ul>
+
 

@@ -1,16 +1,16 @@
 ---
 import "@/scss/styles.scss";
-import { Image } from 'astro:assets';
-import logo from './images/logo.png';
-import x from './images/x.png';
-import instagram from './images/instagram.png';
+import { Image } from "astro:assets";
+import logo from "./images/logo.png";
+import x from "./images/x.png";
+import instagram from "./images/instagram.png";
 ---
 
 <header class="header">
   <div class="header__logo">
-  <a href="http://localhost:4321/">
-    <Image src={logo} alt="ロゴ" class="header__logo-image" />
-  </a>
+    <a href="http://localhost:4321/">
+      <Image src={logo} alt="ロゴ" class="header__logo-image" />
+    </a>
   </div>
   <div class="header__navbar">
     <ul class="header__navbar-content">
@@ -29,7 +29,11 @@ import instagram from './images/instagram.png';
       </li>
       <li class="header__sns-item">
         <a href="https://www.instagram.com/ens_rizdor">
-          <Image src={instagram} alt="instagram.comのアイコン" class="header__instagram" />
+          <Image
+            src={instagram}
+            alt="instagram.comのアイコン"
+            class="header__instagram"
+          />
         </a>
       </li>
     </ul>
@@ -52,14 +56,31 @@ import instagram from './images/instagram.png';
       <nav id="js-global-navigation" class="header__navigation">
         <ul class="header__navigation-list">
           <li>
-            <a href="/" class="header__navigation-link">TOP</a>
+            <a href="/" class="header__navigation-link">HOME</a>
           </li>
           <li>
             <a href="/blogpage" class="header__navigation-link">BLOG</a>
           </li>
           <li>
-            <a href="/winter_concert" class="header__navigation-link">CONCERT</a>
+            <a href="/winter_concert" class="header__navigation-link">CONCERT</a
+            >
           </li>
+          <ul style="display: flex; justify-content: space-between;">
+            <li class="header__navigation-link">SNS</li>
+            <li>
+              <a
+                href="https://twitter.com/ens_rizdor"
+                class="header__navigation-link"
+                style="font-size: 5vw;text-decoration: underline;">X</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/ens_rizdor"
+                class="header__navigation-link" style="font-size: 5vw;text-decoration: underline;">Instagram</a
+              >
+            </li>
+          </ul>
         </ul>
         <div id="js-focus-trap" tabindex="0"></div>
       </nav>
@@ -68,108 +89,108 @@ import instagram from './images/instagram.png';
 </header>
 
 <script>
-const backgroundFix = (bool) => {
-  const scrollingElement = () => {
-    const browser = window.navigator.userAgent.toLowerCase();
-    if ("scrollingElement" in document) return document.scrollingElement;
-    return document.documentElement;
+  const backgroundFix = (bool) => {
+    const scrollingElement = () => {
+      const browser = window.navigator.userAgent.toLowerCase();
+      if ("scrollingElement" in document) return document.scrollingElement;
+      return document.documentElement;
+    };
+
+    const scrollY = bool
+      ? scrollingElement().scrollTop
+      : parseInt(document.body.style.top || "0");
+
+    const fixedStyles = {
+      height: "100vh",
+      position: "fixed",
+      top: `${scrollY * -1}px`,
+      left: "0",
+      width: "100vw",
+    };
+
+    Object.keys(fixedStyles).forEach((key) => {
+      document.body.style[key] = bool ? fixedStyles[key] : "";
+    });
+
+    if (!bool) {
+      window.scrollTo(0, scrollY * -1);
+    }
   };
 
-  const scrollY = bool
-    ? scrollingElement().scrollTop
-    : parseInt(document.body.style.top || "0");
+  const CLASS = "-active";
+  let flg = false;
+  let accordionFlg = false;
 
-  const fixedStyles = {
-    height: "100vh",
-    position: "fixed",
-    top: `${scrollY * -1}px`,
-    left: "0",
-    width: "100vw",
-  };
+  let hamburger = document.getElementById("js-hamburger");
+  let focusTrap = document.getElementById("js-focus-trap");
+  let menu = document.querySelector(".js-nav-area");
+  let accordionTrigger = document.querySelectorAll(".js-sp-accordion-trigger");
+  let accordion = document.querySelectorAll(".js-sp-accordion");
+  let overlay = document.querySelector(".js-overlay");
 
-  Object.keys(fixedStyles).forEach((key) => {
-    document.body.style[key] = bool ? fixedStyles[key] : "";
-  });
-
-  if (!bool) {
-    window.scrollTo(0, scrollY * -1);
-  }
-};
-
-const CLASS = "-active";
-let flg = false;
-let accordionFlg = false;
-
-let hamburger = document.getElementById("js-hamburger");
-let focusTrap = document.getElementById("js-focus-trap");
-let menu = document.querySelector(".js-nav-area");
-let accordionTrigger = document.querySelectorAll(".js-sp-accordion-trigger");
-let accordion = document.querySelectorAll(".js-sp-accordion");
-let overlay = document.querySelector(".js-overlay");
-
-hamburger.addEventListener("click", (e) => {
-  e.currentTarget.classList.toggle(CLASS);
-  menu.classList.toggle(CLASS);
-  overlay.classList.toggle(CLASS);
-  if (flg) {
-    backgroundFix(false);
-    hamburger.setAttribute("aria-expanded", "false");
-    hamburger.focus();
-    flg = false;
-  } else {
-    backgroundFix(true);
-    hamburger.setAttribute("aria-expanded", "true");
-    flg = true;
-  }
-});
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    hamburger.classList.remove(CLASS);
-    menu.classList.remove(CLASS);
-
-    backgroundFix(false);
-    hamburger.focus();
-    hamburger.setAttribute("aria-expanded", "false");
-    flg = false;
-  }
-});
-
-overlay.addEventListener("click", () => {
-  hamburger.classList.remove(CLASS);
-  menu.classList.remove(CLASS);
-  overlay.classList.remove(CLASS); 
-  backgroundFix(false);
-  hamburger.setAttribute("aria-expanded", "false");
-  flg = false;
-});
-
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    hamburger.classList.remove(CLASS);
-    menu.classList.remove(CLASS);
-    overlay.classList.remove(CLASS); 
-    backgroundFix(false);
-    hamburger.focus();
-    hamburger.setAttribute("aria-expanded", "false");
-    flg = false;
-  }
-});
-
-accordionTrigger.forEach((item) => {
-  item.addEventListener("click", (e) => {
+  hamburger.addEventListener("click", (e) => {
     e.currentTarget.classList.toggle(CLASS);
-    e.currentTarget.nextElementSibling.classList.toggle(CLASS);
-    if (accordionFlg) {
-      e.currentTarget.setAttribute("aria-expanded", "false");
-      accordionFlg = false;
+    menu.classList.toggle(CLASS);
+    overlay.classList.toggle(CLASS);
+    if (flg) {
+      backgroundFix(false);
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.focus();
+      flg = false;
     } else {
-      e.currentTarget.setAttribute("aria-expanded", "true");
-      accordionFlg = true;
+      backgroundFix(true);
+      hamburger.setAttribute("aria-expanded", "true");
+      flg = true;
     }
   });
-});
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      hamburger.classList.remove(CLASS);
+      menu.classList.remove(CLASS);
 
-focusTrap.addEventListener("focus", () => {
-  hamburger.focus();
-});
+      backgroundFix(false);
+      hamburger.focus();
+      hamburger.setAttribute("aria-expanded", "false");
+      flg = false;
+    }
+  });
+
+  overlay.addEventListener("click", () => {
+    hamburger.classList.remove(CLASS);
+    menu.classList.remove(CLASS);
+    overlay.classList.remove(CLASS);
+    backgroundFix(false);
+    hamburger.setAttribute("aria-expanded", "false");
+    flg = false;
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      hamburger.classList.remove(CLASS);
+      menu.classList.remove(CLASS);
+      overlay.classList.remove(CLASS);
+      backgroundFix(false);
+      hamburger.focus();
+      hamburger.setAttribute("aria-expanded", "false");
+      flg = false;
+    }
+  });
+
+  accordionTrigger.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.currentTarget.classList.toggle(CLASS);
+      e.currentTarget.nextElementSibling.classList.toggle(CLASS);
+      if (accordionFlg) {
+        e.currentTarget.setAttribute("aria-expanded", "false");
+        accordionFlg = false;
+      } else {
+        e.currentTarget.setAttribute("aria-expanded", "true");
+        accordionFlg = true;
+      }
+    });
+  });
+
+  focusTrap.addEventListener("focus", () => {
+    hamburger.focus();
+  });
 </script>
