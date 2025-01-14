@@ -2006,7 +2006,9 @@ main {
   color: #73450d;
 }
 .EventData__date2 {
-  font-size: 35px;
+  font-size: 40px;
+  margin-right: 6px;
+  margin-left: 6px;
 }
 .EventData__year {
   font-size: 14px;
@@ -2017,11 +2019,11 @@ main {
 }
 
 .EventData__day-of-the-week {
-  font-size: 15px;
-  padding-top: 5px;
+  font-size: 16px;
+  padding-top: 6px;
 }
 .EventData__time {
-  font-size: 15px;
+  font-size: 16px;
 }
 @media (max-width: 550px) {
   .EventData {
