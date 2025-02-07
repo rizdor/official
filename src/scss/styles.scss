@@ -1093,8 +1093,13 @@ main {
         }
       }
       .blogpage__view {
-        display: none;
+        // display: none;
+        // .blog-responsive{
+        //   width: 10vw;
+
+        // }
       }
+
       .blogpage__responsive {
         display: flex;
         flex-direction: column;
@@ -1105,6 +1110,7 @@ main {
       }
     }
   }
+
 }
 // ----- blogpageここまで -----
 
@@ -1768,6 +1774,7 @@ main {
   border: 3px solid #73450d;
   background-color: white;
   border-radius: 1%;
+  width: 350px;
 
   img {
     max-width: 100%;
@@ -1789,6 +1796,11 @@ main {
   .blog__date {
     padding: 5px 0 25px 3%;
   }
+}
+
+@media (max-width: 550px) {
+
+
 }
 // ----- blogここまで -----
 

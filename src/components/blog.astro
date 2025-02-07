@@ -15,7 +15,7 @@ const blog = await getBlogDetail(blogId as string);
     <ul style="display: flex; flex-wrap: wrap;justify-content: space-between;">
         {
           response.contents.map((blog: any) => (
-                <div class="blog" style={`width: 350px; height: 430px; margin-bottom: ${marginbottom}; `}>
+                <div class="blog" style={` height: 430px; margin-bottom: ${marginbottom}; `}>
                     <a href={blog.id}></a>
 
                     <img src={blog.image.url } alt="" style="width: 400px; height: 320px; object-fit: cover;"/>
