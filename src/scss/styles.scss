@@ -1055,14 +1055,13 @@ main {
       // display: flex;
       // justify-content: space-between;
       padding-bottom: 78px;
-
-
-
+    
     }
     .blogpage__responsive {
       display: none;
     }
   }
+
 }
 
 @media (max-width: 550px) {
@@ -1099,7 +1098,9 @@ main {
 
         // }
       }
-
+      .blogpage-text{
+        display: none;
+      }
       .blogpage__responsive {
         display: flex;
         flex-direction: column;
