@@ -36,14 +36,12 @@ header {
       .header__x {
         width: 5vw;
         max-width: 45px;
-        // margin-top: 2px;
         margin-right: 3vw;
       }
       .header__instagram {
         margin-right: 5vw;
         width: 5vw;
         max-width: 45px;
-        // margin-top: 1px;
       }
     }
   }
@@ -162,7 +160,7 @@ header {
         visibility: visible;
         opacity: 1;
       }
-// ハンバーガー押した後
+      // ハンバーガー押した後
       .header__nav-area {
         border-radius: 20px;
         position: fixed;
@@ -186,7 +184,6 @@ header {
         &-list {
           display: flex;
           justify-content: center;
-          // align-items: center;
           flex-direction: column;
 
           & li {
@@ -334,9 +331,7 @@ main {
       }
       .p-top__img-container {
         display: flex;
-        // justify-content: center;
         img {
-
           margin: 40px 0px -10px 40px;
           width: 87%;
         }
@@ -467,7 +462,6 @@ main {
       }
 
       .p-middle__News_box {
-        // display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         .p-middle__News_box-left {
@@ -483,7 +477,6 @@ main {
       }
 
       @media (max-width: 550px) {
-
         .p-middle__News {
           padding-top: 60px;
         }
@@ -508,7 +501,7 @@ main {
             transform: translate(13px, -3px) rotate(29.33deg);
           }
         }
-        
+
         .p-middle__News_box {
           display: block;
           .p-middle__News_box-left {
@@ -598,7 +591,6 @@ main {
           }
         }
       }
-      
 
       .p-middle__About {
         margin-top: 258px;
@@ -1052,16 +1044,12 @@ main {
     }
     .blogpage__view {
       padding-top: 10vw;
-      // display: flex;
-      // justify-content: space-between;
       padding-bottom: 78px;
-    
     }
     .blogpage__responsive {
       display: none;
     }
   }
-
 }
 
 @media (max-width: 550px) {
@@ -1091,14 +1079,7 @@ main {
           transform: translate(12px, 0px) rotate(27.22deg);
         }
       }
-      .blogpage__view {
-        // display: none;
-        // .blog-responsive{
-        //   width: 10vw;
-
-        // }
-      }
-      .blogpage-text{
+      .blogpage-text {
         display: none;
       }
       .blogpage__responsive {
@@ -1111,7 +1092,6 @@ main {
       }
     }
   }
-
 }
 // ----- blogpageここまで -----
 
@@ -1602,36 +1582,6 @@ main {
 
 // ----- blog_linkここから -----
 
-// .Blog_link__lump {
-//   position: relative;
-//   // margin-left: 10%;
-//   margin-top: 50px;
-//   text-align: center;
-
-// }
-
-// .Blog_link__lump::after {
-//   margin: 0 auto;
-//   content: "";
-//   position: absolute;
-//   bottom: -3px;
-//   // left: 25px;
-//   right: 41%;
-//   width: 200px;
-//   height: 2px;
-//   background-color: #f2911b;
-// }
-
-// .Blog_link__lump::before {
-//   content: "";
-//   position: absolute;
-//   top: 5px;
-//   // bottom: 45px;
-//   left: 41%;
-//   width: 200px;
-//   height: 2px;
-//   background-color: #f2911b;
-// }
 .Blog_link__lump {
   position: relative;
   margin-left: 20%;
@@ -1661,31 +1611,8 @@ main {
 .Blog__link {
   font-size: 32px;
   position: relative;
-  // text-align: center;
-  // margin: 0 auto;
 }
 
-// .Blog__link::after {
-//   content: "";
-//   display: block;
-//   width: 2px;
-//   height: 45px;
-//   position: absolute;
-//   top: 14px;
-//   right: -5px;
-//   background-color: #f2911b;
-// }
-
-// .Blog__link::before {
-//   content: "";
-//   display: inline-block;
-//   width: 2px;
-//   height: 45px;
-//   position: absolute;
-//   top: -5px;
-//   left: -8px;
-//   background-color: #f2911b;
-// }
 .Blog__link::after {
   content: "";
   display: block;
@@ -1781,14 +1708,12 @@ main {
     max-width: 100%;
     height: auto;
   }
-  a{
+  a {
     position: absolute;
     top: 0;
     left: 0;
-    height:100%;
+    height: 100%;
     width: 100%;
-
-    // background-color: white;
   }
   .blog__title {
     padding: 15px 0 0px 2%;
@@ -1800,8 +1725,6 @@ main {
 }
 
 @media (max-width: 550px) {
-
-
 }
 // ----- blogここまで -----
 
@@ -2057,7 +1980,7 @@ main {
   .EventData__data {
     max-width: 100%;
     padding: 20px 0 0 0;
-    margin-left: 10%
+    margin-left: 10%;
   }
   .EventData__title {
     display: none;
@@ -2199,7 +2122,7 @@ main {
       margin-left: 30px;
       padding-top: 20px;
     }
-    a{
+    a {
       top: 0;
       left: 0;
       width: 100%;
@@ -2256,7 +2179,7 @@ main {
   cursor: pointer;
   background-color: transparent;
   border-radius: 25px;
-  left: calc((100% - 70px)/2);
+  left: calc((100% - 70px) / 2);
   margin-bottom: 44px;
 
   &::before {
