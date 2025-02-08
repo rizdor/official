@@ -6,14 +6,11 @@ const title = "早稲田大学アンサンブル・リドール";
 const description =
   "早稲田大学公認音楽サークル「アンサンブル リドール」オフィシャルウェブサイト。ポップスからジャズ、ラテンやオーケストラまで幅広いジャンルで活動。";
 const og_image = { logo };
-// import biglogo from "./images/biglogo.png";
-// import biglogo3 from "./images/biglogo3.png";
 import biglogo4 from "./images/biglogo4.png";
 import Carousel from "@/components/Carousel.astro";
 import NewsData from "@/components/NewsData.astro";
 import EventData from "@/components/EventData.astro";
 import detail from "./images/detail.png";
-// import Blog from "@/components/blog.astro";
 import Bloglink from "@/components/blog_link.astro";
 
 //microCMS呼び出し
@@ -22,11 +19,7 @@ const response = await getBlogs({
   fields: ["id", "title", "image", "content", "date"],
 });
 const { blogId } = Astro.params;
-// const blog = await getBlogDetail(blogId as string);
 import { getNews, getNewsDetail } from "../lib/microcms";
-// const response2 = await getNews({
-//   fields: ["id", "title", "description", "date", "text"],
-// });
 const { newsId } = Astro.params;
 const news = await getNewsDetail(newsId as string);
 ---
@@ -44,7 +37,6 @@ const news = await getNewsDetail(newsId as string);
         <span class="p-top__logos_underline2"></span>
         <div class="p-top__img-container">
           <Image src={biglogo4} alt="大きなロゴ" class="p-top__img" />
-          <!-- <img src="./images/biglogo.png"class="p-top__img"> -->
         </div>
         <h2>アンサンブル・リドール</h2>
       </div>
@@ -82,10 +74,6 @@ const news = await getNewsDetail(newsId as string);
             <div class="p-middle__Schedule_eventdata1">
               <EventData />
             </div>
-
-            <!-- <div class="p-middle__Schedule_eventdata3">
-								<EventData />
-							</div> -->
           </div>
         </div>
 
@@ -172,54 +160,53 @@ const news = await getNewsDetail(newsId as string);
           </div>
         </div>
 
-		<div class="p-middle__Blog">
-			<div class="p-middle__Blog_letter">
-				<p class="p-middle__Blog_letter_b">B</p>
-				<p class="p-middle__Blog_letter_l">l</p>
-				<p class="p-middle__Blog_letter_o">o</p>
-				<p class="p-middle__Blog_letter_g">g</p>
-				</div>
-				<div class="p-middle__Blog_about">
-					<div class="p-middle__Blog_pa">
-					<p class="p-middle__Blog_p">
-						私のライブや音楽活動の様子をブログで発信しています！<br>
-						コンサートやリサイタルの情報、リハーサルの裏側、パフォーマンスの感想など、
-						日々の活動を詳しくお届けしています。音楽に対する思いや、
-						新しいチャレンジについても書いているので、ぜひチェックしてみてください。
-						皆さんからのコメントや応援がいつも大きな励みになっています。<br>
-						ブログを通じて、より多くの方と音楽を共有できることを楽しみにしています！
-					</p>
-					<div class="p-middle__Blog_the-most-least-one_responsive">
-						<!-- <Blog width="60vw" /> -->
-					</div>
-					<Bloglink />
-					</div>
-					<div class="p-middle__Blog_the-most-least-one">
-						<!-- <Blog width="30vw"/> -->
-						<ul
-						style="display: flex; flex-wrap: wrap;justify-content: space-between;"
-					  >
-						{
-						  response.contents.slice(0, 1).map((blog: any) => (
-							<div class="blog" style="width: 350px; height:430px margin-top:-30px">
-							  <a href={blog.id} />
-		
-							  <img
-								src={blog.image.url}
-								alt=""
-								style="width: 400px; height: 320px; object-fit: cover;"
-							  />
-							  <p class="blog__title">{blog.title}</p>
-							  <p class="blog__date">{blog.date}</p>
-							</div>
-						  ))
-						}
-					  </ul>
-					</div>
-				</div>
-		</div>
+        <div class="p-middle__Blog">
+          <div class="p-middle__Blog_letter">
+            <p class="p-middle__Blog_letter_b">B</p>
+            <p class="p-middle__Blog_letter_l">l</p>
+            <p class="p-middle__Blog_letter_o">o</p>
+            <p class="p-middle__Blog_letter_g">g</p>
+          </div>
+          <div class="p-middle__Blog_about">
+            <div class="p-middle__Blog_pa">
+              <p class="p-middle__Blog_p">
+                私のライブや音楽活動の様子をブログで発信しています！<br />
+                コンサートやリサイタルの情報、リハーサルの裏側、パフォーマンスの感想など、
+                日々の活動を詳しくお届けしています。音楽に対する思いや、 新しいチャレンジについても書いているので、ぜひチェックしてみてください。
+                皆さんからのコメントや応援がいつも大きな励みになっています。<br
+                />
+                ブログを通じて、より多くの方と音楽を共有できることを楽しみにしています！
+              </p>
+              <div class="p-middle__Blog_the-most-least-one_responsive"></div>
+              <Bloglink />
+            </div>
+            <div class="p-middle__Blog_the-most-least-one">
+              <ul
+                style="display: flex; flex-wrap: wrap;justify-content: space-between;"
+              >
+                {
+                  response.contents.slice(0, 1).map((blog: any) => (
+                    <div
+                      class="blog"
+                      style="width: 350px; height:430px margin-top:-30px"
+                    >
+                      <a href={blog.id} />
 
-		</section>
-
-	</main>
-</Layout>
+                      <img
+                        src={blog.image.url}
+                        alt=""
+                        style="width: 400px; height: 320px; object-fit: cover;"
+                      />
+                      <p class="blog__title">{blog.title}</p>
+                      <p class="blog__date">{blog.date}</p>
+                    </div>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main></Layout
+>
