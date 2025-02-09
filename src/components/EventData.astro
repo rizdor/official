@@ -17,7 +17,7 @@ console.log(response.contents);
                 <div class="EventData__left-circle"></div>
                 <div class="EventData__right-circle"></div>
 
-                <img src={schedule.image.url } alt="イベントの写真" class="EventData__picture"style="width: 180px; height: 250px; object-fit: cover;"/>
+                <img src={schedule.image.url } alt="イベントの写真" class="EventData__picture"style="min-width: 180px; width: 180px; height: 250px; object-fit: cover;"/>
                 <div>
                 <div class="EventData__data">
                     <p class="EventData__title">{schedule.name}</p>
@@ -32,7 +32,7 @@ console.log(response.contents);
                     </div>
                 </div>
 
-                <div class="description"style="margin-left: 10%;">
+                <div class="description"style="margin-left: 40px;">
                     <p>{schedule.text}</p> 
                 </div>
                 </div>
