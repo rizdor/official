@@ -1,13 +1,21 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Timetable from "@/components/Timetable.astro";
+import TimetableWinter from "@/components/TimetableWinter.astro";
+import TimetableSummer from "@/components/TimetableSummer.astro";
 const title = "早稲田大学アンサンブル・リドール concertページ";
 import headerimg from './images/convert_header.png'
 import Gallary from '@/components/Gallary.astro'
 import { Image } from "astro:assets";
+
+import { getConcert ,getConcertDetail} from "../lib/microcms";
+const response = await getConcert({ fields: ["id", "year","winterplace","winterdate","summerplace","summerdate"] });
+const { concertId } = Astro.params;
+const concert = await getConcertDetail(concertId as string);
 ---
 <Layout title={title}>
     <main>
+        {
+        response.contents.slice(0, 1).map((concert: any) => (
         <div class="winter_concert__header">
             <div class="winter_concert__header_detail">
                 <div class="winter_concert__header_title">
@@ -16,8 +24,8 @@ import { Image } from "astro:assets";
                 </div>
                 <div class="winter_concert__header_detail_about">
                     <p class="winter_concert__header_detail_info">無料入場・自由席<br/> チケット等の予約は必要ありません<br/> ご来場お待ちしています！</p>
-                    <p class="winter_concert__header_detail_where">所沢市民文化センター </br>ミューズ 中ホール</p>
-                    <p class="winter_concert__header_detail_date">11/11 （日）１１時開演</p>
+                    <p class="winter_concert__header_detail_where">{concert.winterplace}</p>
+                    <p class="winter_concert__header_detail_date">{concert.winterdate}</p>
                 </div>
             </div>
             <div class="winter_concert__header_image">
@@ -40,7 +48,7 @@ import { Image } from "astro:assets";
             </p>
         </div>
         </div>
-        <Timetable startHighlight="10:00" endHighlight="12:00" />
+        <TimetableWinter startHighlight="10:00" endHighlight="12:00" />
         </div>
         <Gallary />
         <div class="summer_concert__header">
@@ -51,8 +59,8 @@ import { Image } from "astro:assets";
                 </div>
                 <div class="summer_concert__header_detail_about">
                     <p class="summer_concert__header_detail_info">無料入場・自由席<br/> チケット等の予約は必要ありません<br/> ご来場お待ちしています！</p>
-                    <p class="summer_concert__header_detail_where">光が丘 IMAホール</p>
-                    <p class="summer_concert__header_detail_date">7/11 （日）１１時開演</p>
+                    <p class="summer_concert__header_detail_where">{concert.summerplace}</p>
+                    <p class="summer_concert__header_detail_date">{concert.summerdate}</p>
                 </div>
             </div>
             <div class="summer_concert__header_image">
@@ -73,10 +81,13 @@ import { Image } from "astro:assets";
             </p>
         </div>
         </div>
-        <Timetable startHighlight="10:00" endHighlight="12:00" />
+        <TimetableSummer startHighlight="10:00" endHighlight="12:00" />
         </div>
         <Gallary />
+        ))
+    }
     </main>
+    
 </Layout>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
