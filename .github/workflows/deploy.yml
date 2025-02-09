@@ -24,8 +24,8 @@ jobs:
         env:
           MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
-          # MICROCMS_SERVICE_DOMAIN2: ${{ secrets.MICROCMS_SERVICE_DOMAIN2 }}
-          # MICROCMS_API_KEY2: ${{ secrets.MICROCMS_API_KEY2 }}
+          MICROCMS_SERVICE_DOMAIN2: ${{ secrets.MICROCMS_SERVICE_DOMAIN2 }}
+          MICROCMS_API_KEY2: ${{ secrets.MICROCMS_API_KEY2 }}
         # with:
         # path: . # リポジトリ内のAstroプロジェクトのルートロケーション。(オプション)
         # node-version: 18 # サイト構築に使用するNodeのバージョン。デフォルトは18です。（オプション）
