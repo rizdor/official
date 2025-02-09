@@ -7,6 +7,11 @@ const client = createClient({
   apiKey: import.meta.env.MICROCMS_API_KEY,
 });
 
+const client2 = createClient({
+  serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN2,
+  apiKey: import.meta.env.MICROCMS_API_KEY2,
+});
+
 // Blog型定義
 export type Blog = {
   id: string;
@@ -126,13 +131,13 @@ export type ConcertResponse = {
 
 //APIの呼び出し
 export const getConcert = async (queries?: MicroCMSQueries) => {
-  return await client.get<ConcertResponse>({ endpoint: "concert", queries });
+  return await client2.get<ConcertResponse>({ endpoint: "concert", queries });
 };
 export const getConcertDetail = async (
   contentId: string,
   queries?: MicroCMSQueries
 ) => {
-  return await client.getListDetail<Concert>({
+  return await client2.getListDetail<Concert>({
     endpoint: "concert",
     contentId,
     queries,

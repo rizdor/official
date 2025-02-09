@@ -1,12 +1,18 @@
 ---
 import Event from '@/components/Event.astro'
 const { height = '300px', top = '12px' } = Astro.props;
----
 
+import { getConcert ,getConcertDetail} from "../lib/microcms";
+const response = await getConcert({ fields: ["id", "year","winterplace","winterdate","summerplace","summerdate"] });
+const { concertId } = Astro.params;
+const concert = await getConcertDetail(concertId as string);
+---
+{
+response.contents.slice(0, 1).map((concert: any) => (
 <div class="timetable">
     <h1>Time Table</h1>
     <div class="timetable__lump">
-        <h2>11.11（日）</h2>
+        <h2>{concert.winterdate}</h2>
         <div class="timetable__time">            
             <Event height="95px", top="60px" /> <!-- 予定が変わったら簡単に調節できるように -->
             <Event height="95px", top="190px" />
@@ -20,6 +26,7 @@ const { height = '300px', top = '12px' } = Astro.props;
         </div>
     </div>
 </div>
-
+        ))
+    }
 
 
