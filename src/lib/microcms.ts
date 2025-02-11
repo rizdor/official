@@ -126,7 +126,7 @@ export type ConcertResponse = {
   totalCount: number;
   offset: number;
   limit: number;
-  contents: Schedule[];
+  contents: Concert[]
 };
 
 //APIの呼び出し
@@ -143,3 +143,34 @@ export const getConcertDetail = async (
     queries,
   });
 };
+
+
+//Carousel型定義
+export type Carousel = {
+  topimage?: {
+    url: string;
+  };
+};
+
+export type CarouselResponse = {
+  totalCount: number;
+  offset: number;
+  limit: number;
+  contents: Carousel[]
+};
+
+//APIの呼び出し
+export const getCarousel = async (queries?: MicroCMSQueries) => {
+  return await client2.get<CarouselResponse>({ endpoint: "carousel", queries });
+};
+export const getCarouselDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  return await client2.getListDetail<Carousel>({
+    endpoint: "carousel",
+    contentId,
+    queries,
+  });
+};
+
