@@ -1,20 +1,17 @@
 ---
-import { Image } from "astro:assets";
-import JS1 from './images/JS-1.jpg';
-import JS2 from './images/JS-2.jpg';
-import JS3 from './images/JS-3.png';
-import JS4 from './images/JS-4.jpg';
-import JS5 from './images/JS-5.jpg';
-import JS6 from './images/JS-6.jpg';
+import { getCarousel, getCarouselDetail } from "../lib/microcms";
+
+const response = await getCarousel({ fields: ["topimage"] });
+const { carouselId } = Astro.params;
+const carousel = await getCarouselDetail(carouselId as string);
 ---
-<div class="Carousel">
-  <Image src={JS1} alt="JS1"/> 
-  <Image src={JS2} alt="JS2"/>
-  <Image src={JS3} alt="JS3"/>
-  <Image src={JS4} alt="JS4"/>
-  <Image src={JS5} alt="JS5"/>
-  <Image src={JS6} alt="JS6"/>
-  <Image src={JS1} alt="JS1"/>
-  <Image src={JS2} alt="JS2"/>
-  <Image src={JS3} alt="JS3"/>
+
+<div>
+  <ul class="Carousel">
+    {
+      response.contents.map((carousel: any) => (
+      <img src={carousel.topimage?.url } style="width: 600px; height: 450px; object-fit: cover;"/>
+      ))
+    }
+</ul>
 </div>
