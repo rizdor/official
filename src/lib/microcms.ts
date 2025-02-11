@@ -117,6 +117,9 @@ export const getScheduleDetail = async (
 export type Concert = {
   id: string;
   year: string;
+  wintertopimage?:{
+    url:string;
+  };
   winterplace: string;
   winterdate: string;
   winteryoutube:string;
@@ -134,6 +137,9 @@ export type Concert = {
   };
   winterimage5?: {
     url: string;
+  };
+  summertopimage?:{
+    url:string;
   };
   summerplace: string;
   summerdate: string;
