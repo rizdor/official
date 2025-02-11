@@ -9,7 +9,7 @@ const carousel = await getCarouselDetail(carouselId as string);
 <div>
   <ul class="Carousel">
     {
-      response.contents.slice(0, 1).map((carousel: any) => (
+      response.contents.map((carousel: any) => (
       <img src={carousel.topimage?.url } style="width: 600px; height: 450px; object-fit: cover;"/>
       ))
     }
