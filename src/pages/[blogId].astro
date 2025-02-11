@@ -29,7 +29,7 @@ const blog = await getBlogDetail(blogId as string);
       <!-- <a class="backanker" href="/blogpage">←</a> -->
       <h1>{blog.title}</h1>
       <p class="blogdate">公開日時:{blog.date}</p>
-      <div style="line-height: 3;"set:html={blog.content} />
+      <div style="line-height: 2;"set:html={blog.content} />
       <!-- <p>{blog.content}</p> -->
 
   </main>

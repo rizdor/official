@@ -4,7 +4,8 @@ import TimetableWinter from "@/components/TimetableWinter.astro";
 import TimetableSummer from "@/components/TimetableSummer.astro";
 const title = "早稲田大学アンサンブル・リドール concertページ";
 import headerimg from './images/convert_header.png'
-import Gallary from '@/components/Gallary.astro'
+import WinterGallary from '@/components/WinterGallary.astro'
+import SummerGallary from '@/components/SummerGallary.astro'
 import { Image } from "astro:assets";
 
 import { getConcert ,getConcertDetail} from "../lib/microcms";
@@ -50,7 +51,7 @@ const concert = await getConcertDetail(concertId as string);
         </div>
         <TimetableWinter startHighlight="10:00" endHighlight="12:00" />
         </div>
-        <Gallary />
+        <WinterGallary />
         <div class="summer_concert__header">
             <div class="summer_concert__header_detail_summer">
                 <div class="summer_concert__header_title">
@@ -83,7 +84,7 @@ const concert = await getConcertDetail(concertId as string);
         </div>
         <TimetableSummer startHighlight="10:00" endHighlight="12:00" />
         </div>
-        <Gallary />
+        <SummerGallary />
         ))
     }
     </main>
