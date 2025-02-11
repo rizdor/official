@@ -1,0 +1,67 @@
+---
+import { getConcert ,getConcertDetail} from "../lib/microcms";
+const response = await getConcert({ fields: ["id","winteryoutube","winterimage1","winterimage2","winterimage3","winterimage4","winterimage5",
+"summeryoutube","summerimage1","summerimage2","summerimage3","summerimage4","summerimage5"] });
+const { concertId } = Astro.params;
+const concert = await getConcertDetail(concertId as string);
+---
+<ul>
+  {
+    response.contents.slice(0, 1).map((concert: any) => (
+<div class="gallary">
+  <h1>gallary</h1>
+  <div class="gallary__layer">
+    <div class="gallary__image-container big">
+      <iframe src={concert.winteryoutube}
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen 
+        class="gallary__content"></iframe>
+    </div>
+    <div class="gallary__image-container small">
+      <img src={concert.winterimage1?.url } alt="gallaryの一枚目の写真" class="gallary__content" />
+    </div>
+  </div>
+  <div class="gallary__layer">
+    <div class="gallary__image-container small">
+      <img src={concert.winterimage2?.url } alt="gallaryの二枚目の写真" class="gallary__content" />
+    </div>
+    <div class="gallary__image-container big">
+      <img src={concert.winterimage3?.url } alt="gallaryの三枚目の写真" class="gallary__content" />
+    </div>
+  </div>
+  <div class="gallary__layer">
+    <div class="gallary__image-container big">
+      <img src={concert.winterimage4?.url } alt="gallaryの四枚目の写真" class="gallary__content" />
+    </div>
+    <div class="gallary__image-container small">
+      <img src={concert.winterimage5?.url } alt="gallaryの五枚目の写真" class="gallary__content" />
+    </div>
+  </div>
+</div>
+
+
+
+<div class="gallary__responshive">
+  <div class="gallary__first_layer">
+      <iframe src="https://www.youtube-nocookie.com/embed/eX-j--8Mzvg?si=1YQgnWv0xf1qcFuD&amp;controls=0" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen 
+        class="gallary__content"></iframe>
+      </div>
+        <div class="gallary__second_layer">
+      <img src={concert.winterimage1?.url } alt="gallaryの一枚目の写真" class="gallary__content" />
+      <img src={concert.winterimage5?.url } alt="gallaryの五枚目の写真" class="gallary__content" />
+    </div>
+      <div class="gallary__third_layer">
+      <img src={concert.winterimage3?.url } alt="gallaryの三枚目の写真" class="gallary__content" />
+    </div>
+  </div>
+        ))
+    }
+</ul>

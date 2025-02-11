@@ -20,13 +20,16 @@ const blog = await getBlogDetail(blogId as string);
 <Layout title="Blog Detail">
 
   <a class="backanker" href="/official/blogpage">←   一覧</a>
-  <img class="topimage" src={blog?.image?.url} alt="" />
+
+  <div class="image-container">
+    <img class="topimage" src={blog?.image?.url} alt="" />
+  </div>
   <main>
 
       <!-- <a class="backanker" href="/blogpage">←</a> -->
       <h1>{blog.title}</h1>
       <p class="blogdate">公開日時:{blog.date}</p>
-      <div style="line-height: 3;"set:html={blog.content} />
+      <div style="line-height: 2;"set:html={blog.content} />
       <!-- <p>{blog.content}</p> -->
 
   </main>
@@ -41,14 +44,21 @@ const blog = await getBlogDetail(blogId as string);
       margin-left: 2%;
       position: fixed;
     }
-    .topimage {
-      object-fit: cover;
-      margin-top: 80px;
-      max-width: 90%;
-      margin-left: 5%;
-      border-top-left-radius:1.5%;
-      border-top-right-radius: 1.5%;
-    }
+    .image-container {
+  width: 90%;
+  height: 400px;
+  margin: 80px auto 0; /* 上マージン 80px, 中央配置 */
+  overflow: auto; /* 縦にスクロール可能 */
+  border-top-left-radius: 1.5%;
+  border-top-right-radius: 1.5%;
+}
+
+.topimage {
+  object-fit: cover; /* 縦横比を維持して表示 */
+  width: 100%;
+  height: auto; /* 画像の縦幅は自動 */
+  display: block; /* 不要な余白を防ぐ */
+}
     main {
       /* margin-top: 30px; */
       margin: 0 auto 50px auto;

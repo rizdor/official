@@ -117,10 +117,48 @@ export const getScheduleDetail = async (
 export type Concert = {
   id: string;
   year: string;
+  wintertopimage?:{
+    url:string;
+  };
   winterplace: string;
   winterdate: string;
+  winteryoutube:string;
+  winterimage1?: {
+    url: string;
+  };
+  winterimage2?: {
+    url: string;
+  };
+  winterimage3?: {
+    url: string;
+  };
+  winterimage4?: {
+    url: string;
+  };
+  winterimage5?: {
+    url: string;
+  };
+  summertopimage?:{
+    url:string;
+  };
   summerplace: string;
   summerdate: string;
+  summeryoutube:string;
+  summerimage1?: {
+    url: string;
+  };
+  summerimage2?: {
+    url: string;
+  };
+  summerimage3?: {
+    url: string;
+  };
+  summerimage4?: {
+    url: string;
+  };
+  summerimage5?: {
+    url: string;
+  };
 };
 export type ConcertResponse = {
   totalCount: number;
