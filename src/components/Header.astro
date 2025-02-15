@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import logo from "./images/logo.png";
 import x from "./images/x.png";
 import instagram from "./images/instagram.png";
+import Form from "@/components/Form.astro";
 ---
 
 <header class="header">
@@ -15,6 +16,9 @@ import instagram from "./images/instagram.png";
     </a>
   </div>
   <div class="header__navbar">
+    <div style="margin-right: 35px;">
+    <Form />
+  </div>
     <ul class="header__navbar-content">
       <li class="header__navbar-item">
         <a href="/official/blogpage" class="header__navbar-link">Blog</a>

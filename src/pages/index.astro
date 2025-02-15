@@ -10,6 +10,7 @@ import biglogo4 from "./images/biglogo4.png";
 import Carousel from "@/components/Carousel.astro";
 import NewsData from "@/components/NewsData.astro";
 import EventData from "@/components/EventData.astro";
+import FormSp from "@/components/FormSp.astro"
 import detail from "./images/detail.png";
 import Bloglink from "@/components/blog_link.astro";
 
@@ -208,5 +209,5 @@ const news = await getNewsDetail(newsId as string);
         </div>
       </div>
     </section>
-  </main></Layout
->
+    <FormSp />
+  </main></Layout>

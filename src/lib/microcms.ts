@@ -212,3 +212,35 @@ export const getCarouselDetail = async (
   });
 };
 
+
+
+//Invitation型定義
+export type Invitation = {
+  id:string;
+  onoff:boolean;
+  message:string;
+  link:string;
+};
+
+export type InvitationResponse = {
+  totalCount: number;
+  offset: number;
+  limit: number;
+  contents: Invitation[]
+};
+
+//APIの呼び出し
+export const getInvitation = async (queries?: MicroCMSQueries) => {
+  return await client2.get<InvitationResponse>({ endpoint: "invitation", queries });
+};
+export const getInvitationDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  return await client2.getListDetail<Invitation>({
+    endpoint: "invitation",
+    contentId,
+    queries,
+  });
+};
+

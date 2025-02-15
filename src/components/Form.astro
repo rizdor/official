@@ -1,0 +1,47 @@
+---
+import { getInvitation ,getInvitationDetail} from "../lib/microcms";
+const response = await getInvitation({ fields: ["id","link" ,"onoff","message"] });
+const { invitationId } = Astro.params;
+const invitation = await getInvitationDetail(invitationId as string);
+console.log(invitation)
+---
+{
+  response.contents.slice(0, 1).map((invitation: any) => (
+    invitation.onoff ? (  // onoffがtrueのときだけ表示
+      <div class="form">
+        <a class="form-a" href={invitation.link}>
+          {invitation.message}
+        </a>
+      </div>
+    ) : null  // onoffがfalseのときは何も表示しない
+  ))
+}
+
+<style>
+.form {
+  width: 120px;
+  height: 50px;
+  border: 0.3px solid #73450d;
+  background-color: #eac699;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* 背景色とスムーズな変化 */
+}
+
+.form:hover {
+  background-color: #d8b38c; /* ホバー時に背景色を変更 */
+  transform: scale(1.05); /* 少し拡大して目立たせる */
+}
+
+.form a {
+  color: #73450d;
+  line-height: 50px;
+  text-decoration: none; /* 下線を消す */
+}
+
+.form a:hover {
+  color: #fff; /* ホバー時にリンクの色を変更 */
+}
+
+
+</style>

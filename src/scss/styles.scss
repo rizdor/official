@@ -2535,3 +2535,8 @@ main {
   }
 }
 // ----- Timetableここまで -----
+/* 例: Form が表示されるようにするためのスタイル調整 */
+form {
+  display: block;
+  visibility: visible;
+}

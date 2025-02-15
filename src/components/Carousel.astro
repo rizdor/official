@@ -1,6 +1,5 @@
 ---
 import { getCarousel, getCarouselDetail } from "../lib/microcms";
-
 const response = await getCarousel({ fields: ["topimage"] });
 const { carouselId } = Astro.params;
 const carousel = await getCarouselDetail(carouselId as string);
