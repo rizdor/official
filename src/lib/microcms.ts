@@ -122,6 +122,7 @@ export type Concert = {
   };
   winterplace: string;
   winterdate: string;
+  winterintroduction:string;
   winteryoutube:string;
   winterimage1?: {
     url: string;
@@ -143,6 +144,7 @@ export type Concert = {
   };
   summerplace: string;
   summerdate: string;
+  summerintroduction:string;
   summeryoutube:string;
   summerimage1?: {
     url: string;
