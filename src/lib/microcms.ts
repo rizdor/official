@@ -222,6 +222,11 @@ export type Invitation = {
   onoff:boolean;
   message:string;
   link:string;
+  name:string;
+  place:string;
+  day:string;
+  regmoney:string;
+  money:string;
 };
 
 export type InvitationResponse = {
