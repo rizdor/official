@@ -3,30 +3,42 @@ import Event from '@/components/Event.astro'
 const { height = '300px', top = '12px' } = Astro.props;
 
 import { getConcert ,getConcertDetail} from "../lib/microcms";
-const response = await getConcert({ fields: ["id", "year","winterplace","winterdate","summerplace","summerdate"] });
+const response = await getConcert({ 
+  fields: ["id", "year", "winterplace", "winterdate", "time1", "time2", "time3", "time4", "time5", "time6", "time7"] 
+});
 const { concertId } = Astro.params;
 const concert = await getConcertDetail(concertId as string);
+
+// 各 Event の高さ・位置と、対応する timeX のキーを設定
+const eventPositions = [
+  { height: "75px", top: "12px", key: "time1" },
+  { height: "75px", top: "88px", key: "time2" },
+  { height: "75px", top: "164px", key: "time3" },
+  { height: "75px", top: "239px", key: "time4" },
+  { height: "75px", top: "314px", key: "time5" },
+  { height: "75px", top: "389px", key: "time6" },
+  { height: "75px", top: "464px", key: "time7" }
+];
 ---
+
 {
 response.contents.slice(0, 1).map((concert: any) => (
-<div class="timetable">
+  <div class="timetable">
     <h1>Time Table</h1>
     <div class="timetable__lump">
-        <h2>{concert.winterdate}</h2>
-        <div class="timetable__time">            
-            <Event height="95px", top="60px" /> <!-- 予定が変わったら簡単に調節できるように -->
-            <Event height="95px", top="190px" />
-            <Event height="110px", top="315px" />
-                <!-- <p class="timetable__t">16:00</p> -->
-                <p class="timetable__t">17:00</p>
-                <p class="timetable__t">18:00</p>
-                <p class="timetable__t">19:00</p>
-                <p class="timetable__t">20:00</p>
-                <!-- <p class="timetable__t1">21:00</p> -->
-        </div>
+      <h2>{concert.winterdate}</h2>
+      <div class="timetable__time">
+        {
+          eventPositions.map((event, index) => (
+            concert[event.key] ? <Event key={index} height={event.height} top={event.top} /> : null
+          ))
+        }
+        <p class="timetable__t">17:00</p>
+        <p class="timetable__t">18:00</p>
+        <p class="timetable__t">19:00</p>
+        <p class="timetable__t">20:00</p>
+      </div>
     </div>
-</div>
-        ))
-    }
-
-
+  </div>
+))
+}
