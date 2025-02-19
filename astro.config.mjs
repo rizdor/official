@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 
 export default defineConfig({
   site: 'https://rizdor.github.io',
-  base: '/official',
+  base: '/official/',
 
   vite: {
     resolve: {
