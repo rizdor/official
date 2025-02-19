@@ -10,7 +10,7 @@ import biglogo4 from "./images/biglogo4.png";
 import Carousel from "@/components/Carousel.astro";
 import NewsData from "@/components/NewsData.astro";
 import EventData from "@/components/EventData.astro";
-import FormSp from "@/components/FormSp.astro"
+import FormSp from "@/components/FormSp.astro";
 import detail from "./images/detail.png";
 import Bloglink from "@/components/blog_link.astro";
 
@@ -23,6 +23,14 @@ const { blogId } = Astro.params;
 import { getNews, getNewsDetail } from "../lib/microcms";
 const { newsId } = Astro.params;
 const news = await getNewsDetail(newsId as string);
+
+import { getInvitation, getInvitationDetail } from "../lib/microcms";
+const response2 = await getInvitation({
+  fields: ["id", "name", "place", "day", "regmoney", "money"],
+});
+const { invitationId } = Astro.params;
+const invitation = await getInvitationDetail(invitationId as string);
+console.log(invitation);
 ---
 
 <Layout title={title} , description={description} og_image={og_image}>
@@ -133,30 +141,35 @@ const news = await getNewsDetail(newsId as string);
                 class="p-middle__About_image"
               />
             </div>
-            <div class="p-middle__About_details">
-              <div class="p-middle__About_details1">
-                <p class="p-middle__About_details1_title">サークル名</p>
-                <p>アンサンブル・リドール</p>
-              </div>
-              <div class="p-middle__About_details1">
-                <p class="p-middle__About_details1_title">活動場所</p>
-                <p>学生会館(30号館)地下1階音楽練習室</p>
-              </div>
-              <div class="p-middle__About_details1">
-                <p class="p-middle__About_details1_title">活動日</p>
-                <p>週3回(月 木 土)・月木 19:00~21:30・土 17:00~20:30</p>
-              </div>
-              <div class="p-middle__About_details1">
-                <p class="p-middle__About_details1_title">入会費</p>
-                <p>入会費なし</p>
-              </div>
-              <div class="p-middle__About_details1">
-                <p class="p-middle__About_details1_title">会費</p>
-                <p class="p-middle__About_details_fee">
-                  会費は月2000円。合宿費、コンサート前などその場に応じた出費
-                </p>
-              </div>
-            </div>
+
+            {
+              response2.contents.map((invitation: any) => (
+                <div class="p-middle__About_details">
+                  <div class="p-middle__About_details1">
+                    <p class="p-middle__About_details1_title">サークル名</p>
+                    <p>{invitation.name}</p>
+                  </div>
+                  <div class="p-middle__About_details1">
+                    <p class="p-middle__About_details1_title">活動場所</p>
+                    <p>{invitation.place}</p>
+                  </div>
+                  <div class="p-middle__About_details1">
+                    <p class="p-middle__About_details1_title">活動日</p>
+                    <p>{invitation.day}</p>
+                  </div>
+                  <div class="p-middle__About_details1">
+                    <p class="p-middle__About_details1_title">入会費</p>
+                    <p>{invitation.regmoney}</p>
+                  </div>
+                  <div class="p-middle__About_details1">
+                    <p class="p-middle__About_details1_title">会費</p>
+                    <p class="p-middle__About_details_fee">
+                      {invitation.money}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
 
@@ -209,4 +222,5 @@ const news = await getNewsDetail(newsId as string);
       </div>
     </section>
     <FormSp />
-  </main></Layout>
+  </main></Layout
+>
