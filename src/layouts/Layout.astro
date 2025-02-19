@@ -5,7 +5,15 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { GoogleAnalytics } from 'astro-google-analytics';
 // タイトル等をPropsとして受け取る。
-let { title = "", description = "", og_image = "" } = Astro.props;
+let { title, description, og_image } = Astro.props
+// タイトル等が空の場合やnullの場合はデフォルト値を設定
+title =
+  title || '早稲田大学公認音楽サークル アンサンブル・リドール'
+description =
+  description ||
+  'こちらのサイトでリドールの情報や活動を紹介していきます。'
+const baseURL = 'https://rizdor.github.io/official/';
+og_image = og_image || baseURL + 'public/logo.png'
 ---
 
 <!doctype html>
@@ -16,12 +24,12 @@ let { title = "", description = "", og_image = "" } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="" />
+    <meta property="og:site_name" content="早稲田大学公認音楽サークル アンサンブル・リドール" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:image" content={og_image} />
-    <meta name="twitter:site" content="" />
+    <meta name="twitter:site" content="@Ens_Rizdor" />
     <meta name="twitter:url" content={Astro.url} />
     <meta name="twitter:title" content="" />
     <meta name="twitter:description" content={description} />
@@ -31,7 +39,7 @@ let { title = "", description = "", og_image = "" } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" sizes="64x64" type="image/png" href="public/fav.png" />
+    <link rel="icon" sizes="64x64" type="image/png" href="public/fav.ico" />
     <link rel="shortcut icon" href="" />
     <GoogleAnalytics id="G-STZ429M9E0" />
   </head>
