@@ -283,7 +283,7 @@ main {
       .p-top__logos_line {
         position: absolute;
         top: 20%;
-        left: 10%;
+        left: 6%;
         width: 30%;
         height: auto;
         font-weight: 400;
@@ -293,7 +293,7 @@ main {
           content: "";
           position: absolute;
           bottom: 0;
-          left: 42%;
+          left: 60.7%;
           width: 17%;
           height: 0.14vw;
           background-color: #f2911b;
@@ -302,19 +302,20 @@ main {
           content: "";
           position: absolute;
           top: 0;
-          left: 42%;
+          left: 60.7%;
           width: 17%;
           height: 0.14vw;
           background-color: #f2911b;
         }
 
         h1 {
-          font-size: 2.5vw;
+          font-size: 2.6vw;
+          white-space: nowrap;
           &::after {
             content: "";
             position: absolute;
             bottom: -0.3vw;
-            left: 42%;
+            left: 60.7%;
             width: 17%;
             height: 0.14vw;
             background-color: #f2911b;
@@ -323,7 +324,7 @@ main {
             content: "";
             position: absolute;
             top: -0.3vw;
-            left: 42%;
+            left: 60.7%;
             width: 17%;
             height: 0.14vw;
             background-color: #f2911b;
