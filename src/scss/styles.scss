@@ -162,16 +162,17 @@ header {
       }
       // ハンバーガー押した後
       .header__nav-area {
-        opacity: 0.9;
-        border-radius: 1px;
+        // opacity: 0.9;
+        
+        border-radius: 20px;
         position: fixed;
-        top: 10px;
+        top: 0px;
         right: 0;
         z-index: 9;
         height: 90vw;
         width: 60vw;
         visibility: hidden;
-        padding-top: 60px;
+        padding-top: 40px;
         background-color: #957c5f;
 
         &.-active {
@@ -181,7 +182,7 @@ header {
       }
 
       .header__navigation {
-        padding: 0px 25px 120px;
+        padding: 0px 25px 12px;
         &-list {
           display: flex;
           justify-content: center;
@@ -194,7 +195,7 @@ header {
 
         &-link {
           display: flex;
-          color: #ffffff;
+          // color: #ffffff;
           font-weight: 400;
           font-size: 5vw;
           transition: color 0.4s;
