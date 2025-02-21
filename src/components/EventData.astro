@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import picture from './images/exsample.png';
 
 import { getSchedule ,getScheduleDetail} from "../lib/microcms";
-const response = await getSchedule({ fields: ["id", "title","image","text","year","day","name","time","week"] });
+const response = await getSchedule({ fields: ["id", "title","image","text","year","day","name","time","week","place"] });
 const { scheduleId } = Astro.params;
 const schedule = await getScheduleDetail(scheduleId as string);
 console.log(response.contents);
