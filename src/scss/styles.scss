@@ -169,7 +169,7 @@ header {
         top: 0px;
         right: 0;
         z-index: 9;
-        height: 90vw;
+        height: 100vw;
         width: 60vw;
         visibility: hidden;
         padding-top: 40px;
@@ -191,6 +191,9 @@ header {
           & li {
             margin-top: 20px;
           }
+        }
+        .snslist{
+          margin-top: 6px;
         }
 
         &-link {
