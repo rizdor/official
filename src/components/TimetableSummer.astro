@@ -4,21 +4,56 @@ const { height = '300px', top = '12px' } = Astro.props;
 
 import { getConcert ,getConcertDetail} from "../lib/microcms";
 const response = await getConcert({ 
-  fields: ["id", "year", "summerplace", "summerdate", "time8", "time9", "time10", "time11", "time12", "time13", "time14"] 
+  fields: [
+    "id", "year", "summerplace", "summerdate",
+    "time28", "time29", "time30", "time31", "time32", "time33", "time34",
+    "time35", "time36", "time37", "time38", "time39", "time40", "time41",
+    "time42", "time43", "time44", "time45", "time46", "time47", "time48",
+    "time49", "time50", "time51", "time52", "time53", "time54"
+  ]
 });
 const { concertId } = Astro.params;
 const concert = await getConcertDetail(concertId as string);
 
 // 各 Event の高さ・位置と、対応する timeX のキーを設定
 const eventPositions = [
-  { height: "75px", top: "12px", key: "time8" },
-  { height: "75px", top: "88px", key: "time9" },
-  { height: "75px", top: "164px", key: "time10" },
-  { height: "75px", top: "239px", key: "time11" },
-  { height: "75px", top: "314px", key: "time12" },
-  { height: "75px", top: "389px", key: "time13" },
-  { height: "75px", top: "464px", key: "time14" }
+  { height: "25px", top: "12px", key: "time28" },
+  { height: "25px", top: "37px", key: "time29" },
+  { height: "25px", top: "62px", key: "time30" },
+
+  { height: "25px", top: "87px", key: "time31" },
+  { height: "25px", top: "112px", key: "time32" },
+  { height: "26px", top: "137px", key: "time33" },
+
+  { height: "25px", top: "162px", key: "time34" },
+  { height: "25px", top: "187px", key: "time35" },
+  { height: "26px", top: "212px", key: "time36" },
+
+  { height: "25px", top: "237px", key: "time37" },
+  { height: "25px", top: "262px", key: "time38" },
+  { height: "27px", top: "287px", key: "time39" },
+
+  { height: "25px", top: "313px", key: "time40" },
+  { height: "25px", top: "338px", key: "time41" },
+  { height: "26px", top: "363px", key: "time42" },
+
+  { height: "25px", top: "388px", key: "time43" },
+  { height: "25px", top: "413px", key: "time44" },
+  { height: "27px", top: "438px", key: "time45" },
+
+  { height: "25px", top: "464px", key: "time46" },
+  { height: "25px", top: "489px", key: "time47" },
+  { height: "26px", top: "514px", key: "time48" },
+
+  { height: "25px", top: "539px", key: "time49" },
+  { height: "25px", top: "564px", key: "time50" },
+  { height: "27px", top: "589px", key: "time51" },
+
+  { height: "24px", top: "615px", key: "time52" },
+  { height: "25px", top: "639px", key: "time53" },
+  { height: "27px", top: "664px", key: "time54" },
 ];
+
 ---
 
 {
@@ -33,6 +68,7 @@ response.contents.slice(0, 1).map((concert: any) => (
             concert[event.key] ? <Event key={index} height={event.height} top={event.top} /> : null
           ))
         }
+        <p class="timetable__t">16:00</p>
         <p class="timetable__t">17:00</p>
         <p class="timetable__t">18:00</p>
         <p class="timetable__t">19:00</p>
