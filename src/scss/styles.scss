@@ -162,8 +162,6 @@ header {
       }
       // ハンバーガー押した後
       .header__nav-area {
-        // opacity: 0.9;
-        
         border-radius: 20px;
         position: fixed;
         top: 0px;
@@ -197,8 +195,7 @@ header {
         }
 
         &-link {
-          display: flex;
-          // color: #ffffff;
+          display: flex; 
           font-weight: 400;
           font-size: 5vw;
           transition: color 0.4s;
@@ -926,7 +923,6 @@ main {
           }
         }
         .p-middle__Blog_about {
-          // margin: 0 auto;
           display: flex;
           justify-content: space-between;
           padding-top: 50px;
