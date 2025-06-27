@@ -2,16 +2,20 @@
 import Layout from "@/layouts/Layout.astro";
 import TimetableWinter from "@/components/TimetableWinter.astro";
 import TimetableSummer from "@/components/TimetableSummer.astro";
-const title = "早稲田大学アンサンブル・リドール concertページ";
-import headerimg from './images/convert_header.png'
-import WinterGallary from '@/components/WinterGallary.astro'
-import SummerGallary from '@/components/SummerGallary.astro'
-import { Image } from "astro:assets";
+import WinterGallary from '@/components/WinterGallary.astro';
+import SummerGallary from '@/components/SummerGallary.astro';
+import { getConcert, getConcertDetail } from "../lib/microcms";
 
-import { getConcert ,getConcertDetail} from "../lib/microcms";
-const response = await getConcert({ fields: ["id", "year","wintertopimage","winterplace","winterdate","winterintroduction","summertopimage","summerplace","summerdate","summerintroduction"] });
+// params 取得
 const { concertId } = Astro.params;
-const concert = await getConcertDetail(concertId as string);
+
+// concertId が undefined の場合は空オブジェクトで fallback
+const concert = concertId ? await getConcertDetail(concertId) : {};
+const response = await getConcert({
+  fields: ["id", "year", "wintertopimage", "winterplace", "winterdate", "winterintroduction", "summertopimage", "summerplace", "summerdate", "summerintroduction"]
+});
+
+const title = "早稲田大学アンサンブル・リドール concertページ";
 ---
 <Layout title={title}>
     <main>
