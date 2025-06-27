@@ -17,6 +17,38 @@ const concert = await getConcertDetail(concertId as string);
     <main>
         {
         response.contents.slice(0, 1).map((concert: any) => (
+        <div class="summer_concert__header">
+            <div class="summer_concert__header_detail_summer">
+                <div class="summer_concert__header_title">
+                    <h2>Summer Concert</h2>
+                    <p>夏コンサート</p>
+                </div>
+                <div class="summer_concert__header_detail_about">
+                    <p class="summer_concert__header_detail_info">無料入場・自由席<br/> チケット等の予約は必要ありません<br/> ご来場お待ちしています！</p>
+                    <p class="summer_concert__header_detail_where">{concert.summerplace}</p>
+                    <p class="summer_concert__header_detail_date">{concert.summerdate}</p>
+                </div>
+            </div>
+            <div class="summer_concert__header_image">
+            <img src={concert.summertopimage?.url} alt="concertのheader内の写真" />
+        </div>
+        </div>
+        <div class="summer_concert__l-container">
+        <div class="summer_concert__introduction">
+            <h1>Introduction</h1>
+            <div class="summer_concert__introduction-container">
+            <p>
+                {/* リドールの夏の演奏会、サマーコンサート、（通称サマコン）が、今年も光が丘のIMAホールで行われます！
+                4月に新入生44人を迎えて以降、初となる新体制での今回のステージ。
+                フルバン構成の第1部と第3部では、Mrs. GREEN APPLEの軽快な夏ソング｢サママ・フェスティバル｣や、サックスの巨匠ウェイン・ショーターによるジャズナンバー｢Black Nile｣などを含む全10曲を、第2部ではサックス・トランペット・トロンボーンなどが中心のホーンコンボや、バイオリン・フルート・クラリネットなどが中心の弱音コンボなどの少人数編成のバンドで、思わず口ずさみたくなる郷ひろみの名曲、｢２億４千万の瞳－エキゾチック・ジャパン－｣などを含む全5曲を演奏いたします。
+                もちろん15曲全て、当サークル員によるオリジナルのアレンジです！
+                ｢お祭り｣をテーマにしたサークル員おそろいの紺色のTシャツや譜面台装飾、ホール入口に掲示されている立て看板、パートごとの個性溢れる装飾にもご注目ください。
+                リドールのサマコンで、最高の夏のスタートをきりましょう🎵サークル員一堂、皆様にお会いできるのを心待ちにしております。<br/> */}
+                {concert.summerintroduction}
+            </p>
+        </div>
+        </div>
+        <SummerGallary />
         <div class="winter_concert__header">
             <div class="winter_concert__header_detail">
                 <div class="winter_concert__header_title">
@@ -50,43 +82,7 @@ const concert = await getConcertDetail(concertId as string);
             </p>
         </div>
         </div>
-        <TimetableWinter startHighlight="10:00" endHighlight="12:00" />
-        </div>
         <WinterGallary />
-        <div class="summer_concert__header">
-            <div class="summer_concert__header_detail_summer">
-                <div class="summer_concert__header_title">
-                    <h2>Summer Concert</h2>
-                    <p>夏コンサート</p>
-                </div>
-                <div class="summer_concert__header_detail_about">
-                    <p class="summer_concert__header_detail_info">無料入場・自由席<br/> チケット等の予約は必要ありません<br/> ご来場お待ちしています！</p>
-                    <p class="summer_concert__header_detail_where">{concert.summerplace}</p>
-                    <p class="summer_concert__header_detail_date">{concert.summerdate}</p>
-                </div>
-            </div>
-            <div class="summer_concert__header_image">
-            <img src={concert.summertopimage?.url} alt="concertのheader内の写真" />
-        </div>
-        </div>
-        <div class="summer_concert__l-container">
-        <div class="summer_concert__introduction">
-            <h1>Introduction</h1>
-            <div class="summer_concert__introduction-container">
-            <p>
-                {/* リドールの夏の演奏会、サマーコンサート、（通称サマコン）が、今年も光が丘のIMAホールで行われます！
-                4月に新入生44人を迎えて以降、初となる新体制での今回のステージ。
-                フルバン構成の第1部と第3部では、Mrs. GREEN APPLEの軽快な夏ソング｢サママ・フェスティバル｣や、サックスの巨匠ウェイン・ショーターによるジャズナンバー｢Black Nile｣などを含む全10曲を、第2部ではサックス・トランペット・トロンボーンなどが中心のホーンコンボや、バイオリン・フルート・クラリネットなどが中心の弱音コンボなどの少人数編成のバンドで、思わず口ずさみたくなる郷ひろみの名曲、｢２億４千万の瞳－エキゾチック・ジャパン－｣などを含む全5曲を演奏いたします。
-                もちろん15曲全て、当サークル員によるオリジナルのアレンジです！
-                ｢お祭り｣をテーマにしたサークル員おそろいの紺色のTシャツや譜面台装飾、ホール入口に掲示されている立て看板、パートごとの個性溢れる装飾にもご注目ください。
-                リドールのサマコンで、最高の夏のスタートをきりましょう🎵サークル員一堂、皆様にお会いできるのを心待ちにしております。<br/> */}
-                {concert.summerintroduction}
-            </p>
-        </div>
-        </div>
-        <TimetableSummer startHighlight="10:00" endHighlight="12:00" />
-        </div>
-        <SummerGallary />
         ))
     }
     </main>
