@@ -1,107 +1,107 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <title>メンバー情報 | アンサンブル・リドール</title>
-    <link rel="stylesheet" href="members.css" />
+---
+import Layout from "@/layouts/Layout.astro";
+---
 
-    <!-- Chart.js（公式CDN） -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
+<Layout title="メンバー情報">
+  <main class="container">
 
-  <body>
-    <header class="header">
-      <h1>メンバー情報</h1>
-    </header>
+    <section class="chart-section">
+      <h2>男女比</h2>
+      <canvas id="genderChart"></canvas>
+    </section>
 
-    <main class="container">
-      <!-- 男女比 -->
-      <section class="chart-section">
-        <h2>男女比（Animated）</h2>
-        <div class="chart-box">
-          <canvas id="genderChart"></canvas>
-        </div>
-      </section>
+    <section class="chart-section">
+      <h2>出身大学</h2>
+      <canvas id="univChart"></canvas>
+    </section>
 
-      <!-- 出身大学 -->
-      <section class="chart-section">
-        <h2>出身大学（Animated）</h2>
-        <div class="chart-box">
-          <canvas id="univChart"></canvas>
-        </div>
-      </section>
-    </main>
+  </main>
 
-    <script>
-      /** ---------------------------
-       * 男女比グラフ（Pie Chart）
-       * -------------------------- */
-      const genderConfig = {
-        type: "pie",
-        data: {
-          labels: ["男性", "女性"],
-          datasets: [
-            {
-              data: [20, 25],
-              backgroundColor: ["#4C8BF5", "#F56C9C"],
-            },
+  <!-- Chart.js（ブラウザ側で読み込む） -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" client:load></script>
+
+  <!-- グラフのアニメーション制御（ブラウザのみ） -->
+  <script client:load>
+    // -----------------------------
+    // ① グラフ設定（アニメーションは一旦OFF）
+    // -----------------------------
+    const genderConfig = {
+      type: "pie",
+      data: {
+        labels: ["男性", "女性"],
+        datasets: [{
+          data: [20, 25],
+          backgroundColor: ["#4C8BF5", "#F56C9C"],
+        }],
+      },
+      options: {
+        animation: false, // ←最初はアニメーションなしで生成
+        plugins: { legend: { position: "bottom" } },
+      }
+    };
+
+    const univConfig = {
+      type: "doughnut",
+      data: {
+        labels: ["早稲田", "慶應", "日本女子大", "立教", "その他"],
+        datasets: [{
+          data: [18, 10, 5, 4, 8],
+          backgroundColor: [
+            "#1E90FF", "#FF7F50", "#FFD700",
+            "#7B68EE", "#3CB371"
           ],
-        },
-        options: {
-          responsive: true,
-          animation: {
-            animateRotate: true,  // 回転アニメーション
-            animateScale: true,   // 拡大縮小アニメーション
-            duration: 2000,
-            easing: "easeOutBounce",
-          },
-          plugins: {
-            legend: {
-              position: "bottom",
-            },
-          },
-        },
+        }],
+      },
+      options: {
+        animation: false,
+        plugins: { legend: { position: "bottom" } },
+      }
+    };
+
+
+    // -----------------------------
+    // ② Canvas を取得
+    // -----------------------------
+    const genderCanvas = document.getElementById("genderChart");
+    const univCanvas = document.getElementById("univChart");
+
+    // Chart インスタンスをあらかじめ生成
+    const genderChart = new Chart(genderCanvas, genderConfig);
+    const univChart = new Chart(univCanvas, univConfig);
+
+
+    // -----------------------------
+    // ③ IntersectionObserver で可視時にアニメーション実行
+    // -----------------------------
+    const animateChart = (chart, config) => {
+      chart.options.animation = {
+        animateRotate: true,
+        animateScale: true,
+        duration: 1800,
+        easing: "easeOutCubic",
       };
+      chart.update();
+    };
 
-      new Chart(document.getElementById("genderChart"), genderConfig);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.id === "genderChart") {
+              animateChart(genderChart, genderConfig);
+            }
+            if (entry.target.id === "univChart") {
+              animateChart(univChart, univConfig);
+            }
+            // １回だけ発火
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } // 画面の50%見えたら開始
+    );
 
-      /** ---------------------------
-       * 出身大学（Doughnut Chart）
-       * -------------------------- */
-      const univConfig = {
-        type: "doughnut",
-        data: {
-          labels: ["早稲田大学", "慶應義塾大学", "日本女子大", "立教大", "その他"],
-          datasets: [
-            {
-              data: [18, 10, 5, 4, 8],
-              backgroundColor: [
-                "#1E90FF",
-                "#FF7F50",
-                "#FFD700",
-                "#7B68EE",
-                "#3CB371",
-              ],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          animation: {
-            animateRotate: true,
-            animateScale: true,
-            duration: 2500,
-            easing: "easeInOutQuart",
-          },
-          plugins: {
-            legend: {
-              position: "bottom",
-            },
-          },
-        },
-      };
-
-      new Chart(document.getElementById("univChart"), univConfig);
-    </script>
-  </body>
-</html>
+    observer.observe(genderCanvas);
+    observer.observe(univCanvas);
+  </script>
+</Layout>
