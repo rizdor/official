@@ -17,13 +17,16 @@ import Layout from "@/layouts/Layout.astro";
 
   </main>
 
-  <!-- Chart.js（ブラウザ側で読み込む） -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js" client:load></script>
+  <!-- Chart.js を CDN からロード（is:inline が必要） -->
+  <script
+    is:inline
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+  ></script>
 
-  <!-- グラフのアニメーション制御（ブラウザのみ） -->
-  <script client:load>
+  <!-- グラフ描画スクリプト -->
+  <script is:inline>
     // -----------------------------
-    // ① グラフ設定（アニメーションは一旦OFF）
+    // ① アニメーションOFFで生成
     // -----------------------------
     const genderConfig = {
       type: "pie",
@@ -35,7 +38,7 @@ import Layout from "@/layouts/Layout.astro";
         }],
       },
       options: {
-        animation: false, // ←最初はアニメーションなしで生成
+        animation: false,
         plugins: { legend: { position: "bottom" } },
       }
     };
@@ -58,22 +61,19 @@ import Layout from "@/layouts/Layout.astro";
       }
     };
 
-
     // -----------------------------
-    // ② Canvas を取得
+    // ② Canvas を取得 → チャート生成
     // -----------------------------
     const genderCanvas = document.getElementById("genderChart");
     const univCanvas = document.getElementById("univChart");
 
-    // Chart インスタンスをあらかじめ生成
     const genderChart = new Chart(genderCanvas, genderConfig);
     const univChart = new Chart(univCanvas, univConfig);
 
-
     // -----------------------------
-    // ③ IntersectionObserver で可視時にアニメーション実行
+    // ③ スクロールしたらアニメーション実行
     // -----------------------------
-    const animateChart = (chart, config) => {
+    const animateChart = (chart) => {
       chart.options.animation = {
         animateRotate: true,
         animateScale: true,
@@ -88,17 +88,16 @@ import Layout from "@/layouts/Layout.astro";
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (entry.target.id === "genderChart") {
-              animateChart(genderChart, genderConfig);
+              animateChart(genderChart);
             }
             if (entry.target.id === "univChart") {
-              animateChart(univChart, univConfig);
+              animateChart(univChart);
             }
-            // １回だけ発火
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.5 } // 画面の50%見えたら開始
+      { threshold: 0.5 }
     );
 
     observer.observe(genderCanvas);
