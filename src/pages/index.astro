@@ -212,12 +212,20 @@ console.log(invitation);
                   response.contents.slice(0, 1).map((blog: any) => (
                     <div
                       class="blog"
-                      style="width: 350px; height:430px margin-top:-30px"
+                      style="width: 350px; height:430px; margin-top:-30px"
                     >
-                      <a href={blog.id} />
+                    <a href={`/blog/${blog.id}`}>
+                      <img
+                        src={blog.image.url}
+                        alt=""
+                        style="width: 400px; height: 320px; object-fit: cover;"
+                      />
+                      <p class="blog__title">{blog.title}</p>
+                      <p class="blog__date">{blog.date}</p>
+                    </a>
 
                       <img
-                        src={blog.image.link}
+                        src={blog.image.url}
                         alt=""
                         style="width: 400px; height: 320px; object-fit: cover;"
                       />
