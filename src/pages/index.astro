@@ -15,16 +15,14 @@ import detail from "./images/detail.png";
 import Bloglink from "@/components/blog_link.astro";
 
 //microCMS呼び出し
-import { getBlogs, getBlogDetail } from "../lib/microcms";
+import { getBlogs } from "../lib/microcms";
 const response = await getBlogs({
   fields: ["id", "title", "image", "content", "date"],
 });
-const { blogId } = Astro.params;
-import { getNews, getNewsDetail } from "../lib/microcms";
-const { newsId } = Astro.params;
-const news = await getNewsDetail(newsId as string);
 
-import { getInvitation, getInvitationDetail } from "../lib/microcms";
+import { getNews } from "../lib/microcms";
+
+import { getInvitation } from "../lib/microcms";
 const response2 = await getInvitation({
   fields: ["id", "name", "place", "day", "regmoney", "money"],
 });
