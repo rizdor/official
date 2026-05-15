@@ -1,69 +1,92 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
-import logo from "./images/logo.png";
+
 const title = "早稲田大学公認音楽サークル アンサンブル・リドール";
+
 const description =
   "早稲田大学公認音楽サークル「アンサンブル リドール」オフィシャルウェブサイト。ポップスからジャズ、ラテンやオーケストラまで幅広いジャンルで活動。";
+
 const og_image = "logo.png";
+
 import biglogo4 from "./images/biglogo4.png";
+import detail from "./images/detail.png";
+
 import Carousel from "@/components/Carousel.astro";
 import NewsData from "@/components/NewsData.astro";
 import EventData from "@/components/EventData.astro";
 import FormSp from "@/components/FormSp.astro";
-import detail from "./images/detail.png";
 import Bloglink from "@/components/blog_link.astro";
 
-//microCMS呼び出し
-import { getBlogs } from "../lib/microcms";
+// microCMS
+import { getBlogs, getInvitation } from "../lib/microcms";
+
 const response = await getBlogs({
   fields: ["id", "title", "image", "content", "date"],
 });
 
-import { getNews } from "../lib/microcms";
-
-import { getInvitation } from "../lib/microcms";
 const response2 = await getInvitation({
   fields: ["id", "name", "place", "day", "regmoney", "money"],
 });
 ---
 
-<Layout title={title} , description={description} og_image={og_image}>
+<Layout
+  title={title}
+  description={description}
+  og_image={og_image}
+>
   <main>
     <section id="top" class="p-top">
       <div class="p-top__logos">
         <div class="p-top__logos_line">
           <h1>早稲田大学公認音楽サークル</h1>
         </div>
+
         <span class="p-top__logos_overline1"></span>
         <span class="p-top__logos_overline2"></span>
         <span class="p-top__logos_underline1"></span>
         <span class="p-top__logos_underline2"></span>
+
         <div class="p-top__img-container">
-          <Image src={biglogo4} alt="大きなロゴ" class="p-top__img" />
+          <Image
+            src={biglogo4}
+            alt="大きなロゴ"
+            class="p-top__img"
+          />
         </div>
+
         <h2>アンサンブル・リドール</h2>
       </div>
+
       <div class="p-top__JS">
         <Carousel />
       </div>
     </section>
+
     <section id="middle" class="p-middle">
       <div class="p-middle__l-container">
+
+        <!-- NEWS -->
         <div class="p-middle__background_img">
           <div class="p-middle__News">
+
             <div class="p-middle__News_letter">
               <p class="p-middle__News_letter_n">N</p>
               <p class="p-middle__News_letter_e">e</p>
               <p class="p-middle__News_letter_w">w</p>
               <p class="p-middle__News_letter_s">s</p>
             </div>
+
             <div class="p-middle__News_box">
               <NewsData />
             </div>
+
           </div>
         </div>
+
+        <!-- SCHEDULE -->
         <div class="p-middle__Schedule">
+
           <div class="p-middle__Schedule_letter">
             <p class="p-middle__Schedule_letter_s">S</p>
             <p class="p-middle__Schedule_letter_c">c</p>
@@ -74,15 +97,20 @@ const response2 = await getInvitation({
             <p class="p-middle__Schedule_letter_l">l</p>
             <p class="p-middle__Schedule_letter_e2">e</p>
           </div>
+
           <div class="p-middle__Schedule_eventdata">
             <div class="p-middle__Schedule_eventdata1">
               <EventData />
             </div>
           </div>
+
         </div>
 
+        <!-- ABOUT -->
         <div class="p-middle__About">
+
           <div class="p-middle__About-overlay"></div>
+
           <div class="p-middle__About_letter">
             <p class="p-middle__About_letter_a">A</p>
             <p class="p-middle__About_letter_b">b</p>
@@ -90,62 +118,88 @@ const response2 = await getInvitation({
             <p class="p-middle__About_letter_u">u</p>
             <p class="p-middle__About_letter_t">t</p>
           </div>
+
           <div class="p-middle__About_points">
             <div class="p-middle__About_lump">
               <div class="p-middle__About_header">
                 <p class="p-middle__About_number">01</p>
                 <p class="p-middle__About_title">早稲田唯一の編成</p>
               </div>
-              <p class="p-middle__About_title_responsive">早稲田唯一の編成</p>
+
+              <p class="p-middle__About_title_responsive">
+                早稲田唯一の編成
+              </p>
             </div>
+
             <p class="p-middle__About_explanation">
-              ビックバンドにVn, Cl, Flの弱音パートを迎えたポップスオーケストラという早稲田唯一の編成で活動しています！特殊な編成であるため、楽譜は自分たちで編曲して作成しています。
+              ビックバンドにVn, Cl, Flの弱音パートを迎えたポップスオーケストラという早稲田唯一の編成で活動しています！
+              特殊な編成であるため、楽譜は自分たちで編曲して作成しています。
             </p>
           </div>
+
           <div class="p-middle__About_points">
             <div class="p-middle__About_lump">
               <div class="p-middle__About_header">
                 <p class="p-middle__About_number">02</p>
                 <p class="p-middle__About_title">非レギュラー制</p>
               </div>
-              <p class="p-middle__About_title_responsive">非レギュラー制</p>
+
+              <p class="p-middle__About_title_responsive">
+                非レギュラー制
+              </p>
             </div>
+
             <p class="p-middle__About_explanation">
-              メンバー全員が演奏会に参加するという形をとっています。そのため、楽器を始めたての初心者でも、
-              経験者と同様に、はじめからコンサートの舞台で演奏することができます。また、入会の際にオーディションなどはありません。
+              メンバー全員が演奏会に参加するという形をとっています。
+              そのため、楽器を始めたての初心者でも、
+              経験者と同様に、はじめからコンサートの舞台で演奏することができます。
+              また、入会の際にオーディションなどはありません。
             </p>
           </div>
+
           <div class="p-middle__About_points">
             <div class="p-middle__About_lump">
               <div class="p-middle__About_header">
                 <p class="p-middle__About_number">03</p>
-                <p class="p-middle__About_title">初心者・経験者大歓迎</p>
+                <p class="p-middle__About_title">
+                  初心者・経験者大歓迎
+                </p>
               </div>
-              <p class="p-middle__About_title_responsive">初心者・経験者大歓迎</p>
+
+              <p class="p-middle__About_title_responsive">
+                初心者・経験者大歓迎
+              </p>
             </div>
+
             <p class="p-middle__About_explanation">
-              リドールでは、初心者も多数受け付けており、現在メンバーの約3割が初心者です。中には大学までほとんど音楽をしたことのなかったメンバーや、
-              大学に入ってから別の楽器を始めてみたというメンバーもいます。リドールではこうした初心者も上級生がサポートしていきます。また、経験者でも
-              ブランクがある方や、大学では音楽を緩く続けたい方にもオススメ！純粋に音楽を楽しむことを大切にしているので、練習も自分のペースで続けられます。
+              リドールでは、初心者も多数受け付けており、
+              現在メンバーの約3割が初心者です。
             </p>
           </div>
+
           <div class="p-middle__About_points">
             <div class="p-middle__About_lump">
               <div class="p-middle__About_header">
                 <p class="p-middle__About_number">04</p>
                 <p class="p-middle__About_title">インカレ生多数</p>
               </div>
-              <p class="p-middle__About_title_responsive">インカレ生多数</p>
+
+              <p class="p-middle__About_title_responsive">
+                インカレ生多数
+              </p>
             </div>
+
             <p class="p-middle__About_explanation">
-              インカレサークルのため、他大学の学生さんも大歓迎です。現在、慶應義塾大、日本女子大、東京女子大、東京藝大、大妻女子大、立教大などをはじめとした多くの大学出身のメンバーが参加しています。
+              インカレサークルのため、他大学の学生さんも大歓迎です。
             </p>
           </div>
+
           <div class="p-middle__About_detail">
+
             <div class="p-middle__About_image_wrapper">
               <Image
                 src={detail}
-                alt="サークルの説明の画像"
+                alt="サークルの説明画像"
                 class="p-middle__About_image"
               />
             </div>
@@ -153,90 +207,121 @@ const response2 = await getInvitation({
             {
               response2.contents.map((invitation: any) => (
                 <div class="p-middle__About_details">
+
                   <div class="p-middle__About_details1">
-                    <p class="p-middle__About_details1_title">サークル名</p>
+                    <p class="p-middle__About_details1_title">
+                      サークル名
+                    </p>
                     <p>{invitation.name}</p>
                   </div>
+
                   <div class="p-middle__About_details1">
-                    <p class="p-middle__About_details1_title">活動場所</p>
+                    <p class="p-middle__About_details1_title">
+                      活動場所
+                    </p>
                     <p>{invitation.place}</p>
                   </div>
+
                   <div class="p-middle__About_details1">
-                    <p class="p-middle__About_details1_title">活動日</p>
+                    <p class="p-middle__About_details1_title">
+                      活動日
+                    </p>
                     <p>{invitation.day}</p>
                   </div>
+
                   <div class="p-middle__About_details1">
-                    <p class="p-middle__About_details1_title">入会費</p>
+                    <p class="p-middle__About_details1_title">
+                      入会費
+                    </p>
                     <p>{invitation.regmoney}</p>
                   </div>
+
                   <div class="p-middle__About_details1">
-                    <p class="p-middle__About_details1_title">会費</p>
+                    <p class="p-middle__About_details1_title">
+                      会費
+                    </p>
+
                     <p class="p-middle__About_details_fee">
                       {invitation.money}
                     </p>
                   </div>
+
                 </div>
               ))
             }
+
           </div>
         </div>
 
+        <!-- BLOG -->
         <div class="p-middle__Blog">
+
           <div class="p-middle__Blog_letter">
             <p class="p-middle__Blog_letter_b">B</p>
             <p class="p-middle__Blog_letter_l">l</p>
             <p class="p-middle__Blog_letter_o">o</p>
             <p class="p-middle__Blog_letter_g">g</p>
           </div>
+
           <div class="p-middle__Blog_about">
+
             <div class="p-middle__Blog_pa">
+
               <p class="p-middle__Blog_p">
-                私のライブや音楽活動の様子をブログで発信しています！<br />
-                コンサートやリサイタルの情報、リハーサルの裏側、パフォーマンスの感想など、
-                日々の活動を詳しくお届けしています。音楽に対する思いや、 新しいチャレンジについても書いているので、ぜひチェックしてみてください。
-                皆さんからのコメントや応援がいつも大きな励みになっています。<br
-                />
-                ブログを通じて、より多くの方と音楽を共有できることを楽しみにしています！
+                私のライブや音楽活動の様子をブログで発信しています！
+                <br />
+                コンサートやリサイタルの情報、リハーサルの裏側、
+                パフォーマンスの感想など、日々の活動を詳しくお届けしています。
               </p>
+
               <div class="p-middle__Blog_the-most-least-one_responsive"></div>
+
               <Bloglink />
+
             </div>
+
             <div class="p-middle__Blog_the-most-least-one">
+
               <ul
-                style="display: flex; flex-wrap: wrap;justify-content: space-between;"
+                style="display: flex; flex-wrap: wrap; justify-content: space-between;"
               >
                 {
                   response.contents.slice(0, 1).map((blog: any) => (
-                    <div
+                    <li
                       class="blog"
-                      style="width: 350px; height:430px; margin-top:-30px"
+                      style="width: 350px; height: 430px; margin-top: -30px; list-style: none;"
                     >
-                    <a href={`/blog/${blog.id}`}>
-                      <img
-                        src={blog.image.url}
-                        alt=""
-                        style="width: 400px; height: 320px; object-fit: cover;"
-                      />
-                      <p class="blog__title">{blog.title}</p>
-                      <p class="blog__date">{blog.date}</p>
-                    </a>
+                      <a href={`/blog/${blog.id}`}>
 
-                      <img
-                        src={blog.image.url}
-                        alt=""
-                        style="width: 400px; height: 320px; object-fit: cover;"
-                      />
-                      <p class="blog__title">{blog.title}</p>
-                      <p class="blog__date">{blog.date}</p>
-                    </div>
+                        <img
+                          src={blog.image?.url}
+                          alt={blog.title}
+                          style="width: 400px; height: 320px; object-fit: cover;"
+                        />
+
+                        <p class="blog__title">
+                          {blog.title}
+                        </p>
+
+                        <p class="blog__date">
+                          {blog.date}
+                        </p>
+
+                      </a>
+                    </li>
                   ))
                 }
               </ul>
+
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
+
     <FormSp />
-  </main></Layout
->
+
+  </main>
+</Layout>
