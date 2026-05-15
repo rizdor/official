@@ -26,8 +26,6 @@ import { getInvitation } from "../lib/microcms";
 const response2 = await getInvitation({
   fields: ["id", "name", "place", "day", "regmoney", "money"],
 });
-const { invitationId } = Astro.params;
-const invitation = await getInvitationDetail(invitationId as string);
 console.log(invitation);
 ---
 
