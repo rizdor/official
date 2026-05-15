@@ -293,11 +293,15 @@ const response2 = await getInvitation({
                     >
                       <a href={`/blog/${blog.id}`}>
 
-                        <img
-                          src={blog.image?.url}
-                          alt={blog.title}
-                          style="width: 400px; height: 320px; object-fit: cover;"
-                        />
+                       {
+                          blog.image?.url && (
+                            <img
+                              src={blog.image.url}
+                              alt={blog.title}
+                              style="width: 400px; height: 320px; object-fit: cover;"
+                            />
+                        )
+                      }
 
                         <p class="blog__title">
                           {blog.title}
