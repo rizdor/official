@@ -851,9 +851,13 @@ main {
                   }
                 }
                 .p-middle__About_title {
-                  display: none;
+                  font-size: 28px;
                 }
-              }
+
+                .p-middle__About_explanation {
+                  font-size: 20px;
+                   line-height: 1.8;
+                }
               .p-middle__About_title_responsive {
                 display: block;
               }
